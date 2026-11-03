@@ -33,7 +33,7 @@ export function buildSeo(profile: Profile) {
     url: SITE_URL,
     email: `mailto:${profile.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Noida', addressCountry: 'IN' },
-    sameAs: Object.values(profile.links),
+    sameAs: [profile.links.github, profile.links.linkedin],
     knowsAbout: ['Computer Vision', 'Python', 'PyTorch', 'OpenCV', 'React', 'TypeScript', 'Node.js', 'MongoDB', 'Next.js', 'GSAP'],
   }
 

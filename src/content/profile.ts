@@ -14,5 +14,9 @@ export const profile: Profile = {
   links: {
     github: `https://github.com/${githubUser}`,
     linkedin: 'https://www.linkedin.com/in/arjunsharma16/',
+    // Only linked when public/resume.pdf exists at build time (see vite.config.ts).
+    resume: __HAS_RESUME__ ? '/resume.pdf' : undefined,
   },
 }
+
+export const githubRepo = (name: string) => `${profile.links.github}/${name}`

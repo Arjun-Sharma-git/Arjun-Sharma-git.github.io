@@ -7,7 +7,7 @@ export type Profile = {
   summary: string
   email: string
   githubUser: string
-  links: { github: string; linkedin: string }
+  links: { github: string; linkedin: string; resume?: string }
 }
 
 export type Stat = { value: number; prefix?: string; suffix?: string; label: string }
@@ -15,6 +15,8 @@ export type Stat = { value: number; prefix?: string; suffix?: string; label: str
 export type SkillGroup = { id: string; title: string; headline: string; body: string; skills: string[] }
 
 export type Project = {
+  /** Position in the Work section, lowest first. */
+  order: number
   name: string
   kind: string
   description: string

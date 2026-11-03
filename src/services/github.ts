@@ -11,7 +11,11 @@ export type Repo = {
 const API = 'https://api.github.com'
 
 export async function fetchUserRepos(user: string): Promise<Repo[]> {
-  const res = await fetch(`${API}/users/${user}/repos?per_page=100&sort=pushed`)
+  // Token only exists in CI builds (server side); the SSR check keeps it out of the client bundle.
+  const token = import.meta.env.SSR ? process.env.GITHUB_TOKEN : undefined
+  const res = await fetch(`${API}/users/${user}/repos?per_page=100&sort=pushed`, {
+    headers: token ? { Authorization: `Bearer ${token}` } : {},
+  })
   // shortcut: unauthenticated API (60 req/h per IP); returning [] keeps the build and page working when rate-limited
   if (!res.ok) return []
   return res.json()

@@ -43,6 +43,11 @@ export function Contact() {
               <ExternalLink href={profile.links.github} className="hover:text-paper">
                 GitHub
               </ExternalLink>
+              {profile.links.resume && (
+                <ExternalLink href={profile.links.resume} className="hover:text-paper">
+                  Resume
+                </ExternalLink>
+              )}
             </div>
           </div>
         </div>

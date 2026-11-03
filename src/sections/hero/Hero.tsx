@@ -55,6 +55,14 @@ export function Hero() {
           >
             GitHub profile
           </ExternalLink>
+          {profile.links.resume && (
+            <ExternalLink
+              href={profile.links.resume}
+              className="rounded-full border border-line bg-paper/70 px-5 py-2 text-sm font-medium backdrop-blur transition-colors hover:border-ink"
+            >
+              Download resume
+            </ExternalLink>
+          )}
         </div>
       </div>
     </section>
