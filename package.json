@@ -6,7 +6,8 @@
     "dev": "vite dev --port 3000",
     "build": "vite build",
     "start": "vite preview --port 3000",
-    "preview": "vite preview --port 3000"
+    "preview": "vite preview --port 3000",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@gsap/react": "^2.1.2",

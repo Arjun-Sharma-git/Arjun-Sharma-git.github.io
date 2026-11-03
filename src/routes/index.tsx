@@ -1,24 +1,17 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { reposQuery } from '../data/repos'
-import { Nav } from '../components/Nav'
-import { Hero } from '../components/Hero'
-import { Stats } from '../components/Stats'
-import { Skills } from '../components/Skills'
-import { Work } from '../components/Work'
-import { Repos } from '../components/Repos'
-import { Contact } from '../components/Contact'
+import { showcaseReposQuery } from '~/queries/repos'
+import { Nav, SkipLink } from '~/components/layout'
+import { Contact, Hero, Repos, Skills, Stats, Work } from '~/sections'
 
 export const Route = createFileRoute('/')({
-  loader: ({ context }) => context.queryClient.ensureQueryData(reposQuery),
-  component: Home,
+  loader: ({ context }) => context.queryClient.ensureQueryData(showcaseReposQuery),
+  component: HomePage,
 })
 
-function Home() {
+function HomePage() {
   return (
     <>
-      <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper">
-        Skip to content
-      </a>
+      <SkipLink />
       <Nav />
       <main id="main">
         <Hero />

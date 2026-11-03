@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 
-export function SectionHeading({ eyebrow, title, accent, children }: { eyebrow: string; title: string; accent: string; children?: ReactNode }) {
+type Props = { eyebrow: string; title: string; accent: string; children?: ReactNode }
+
+export function SectionHeading({ eyebrow, title, accent, children }: Props) {
   return (
     <div data-reveal className="mx-auto max-w-3xl text-center">
       <p className="text-xs font-medium uppercase tracking-[0.2em] text-gold-deep">{eyebrow}</p>

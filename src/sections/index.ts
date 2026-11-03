@@ -1,0 +1,6 @@
+export { Hero } from './hero/Hero'
+export { Stats } from './stats/Stats'
+export { Skills } from './skills/Skills'
+export { Work } from './work/Work'
+export { Repos } from './repos/Repos'
+export { Contact } from './contact/Contact'
