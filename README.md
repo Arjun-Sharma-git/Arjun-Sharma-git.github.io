@@ -67,7 +67,23 @@ The site is set up as a GitHub Pages *user site* at `https://arjun-sharma-git.gi
 2. Settings → Pages → Source: **GitHub Actions**.
 3. Add it as a remote and push `main`; `.github/workflows/deploy.yml` builds and publishes `dist/client`.
 
-Using a different repo name serves the site under `/<repo>/`, which needs a base path; using a custom domain
-means updating `src/config/site.ts` and `public/robots.txt` (and adding `public/CNAME`).
+Using a different repo name serves the site under `/<repo>/`, which needs a base path.
+
+### Custom domain
+
+1. Put the bare domain (e.g. `arjunsharma.dev`) on one line in `public/CNAME`.
+2. Set `SITE_URL` in `src/config/site.ts` and the sitemap line in `public/robots.txt` to `https://<domain>`.
+3. At your DNS provider add GitHub Pages' A/AAAA records (apex) or a CNAME to `arjun-sharma-git.github.io` (subdomain),
+   then enable "Enforce HTTPS" in Settings → Pages.
+
+## Repos section
+
+Shows your own GitHub repos that have a description, newest first. Starter repos are listed in
+`src/content/repos.ts`; add a description on GitHub to make a repo appear.
+
+## Quality checks
+
+`npm run typecheck`, `node --experimental-strip-types src/services/github.check.ts`, and Lighthouse
+(last run: desktop 100/100/100/100, mobile 95/100/100/100 with gzip, CLS 0).
 - Social card: edit `scripts/og.html`, regenerate with the command in its header comment.
 - `dist/client` can be deployed to any static host.

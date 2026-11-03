@@ -14,7 +14,10 @@ export default defineConfig({
       // Only crawl HTML pages; static files like resume.pdf are copied as-is from public/.
       prerender: { enabled: true, crawlLinks: true, filter: ({ path }) => !/\.\w+$/.test(path) },
       sitemap: { enabled: true, host: SITE_URL },
-      pages: [{ path: '/', sitemap: { priority: 1, changefreq: 'monthly' } }],
+      pages: [
+        { path: '/', sitemap: { priority: 1, changefreq: 'monthly' } },
+        { path: '/404', prerender: { enabled: true, outputPath: '/404.html' }, sitemap: { exclude: true } },
+      ],
     }),
     viteReact(),
   ],

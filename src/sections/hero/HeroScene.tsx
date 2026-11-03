@@ -14,7 +14,15 @@ export function HeroScene({ onReady }: { onReady: (scene: GazeScene | null) => v
     if (!canRender3D()) return
     let scene: GazeScene | undefined
     let cancelled = false
-    import('./scene/gazeScene')
+    // Wait for load + idle so three.js never competes with first paint.
+    const whenIdle = () =>
+      new Promise<void>((resolve) => {
+        const idle = () => ('requestIdleCallback' in window ? requestIdleCallback(() => resolve(), { timeout: 2000 }) : setTimeout(resolve, 200))
+        if (document.readyState === 'complete') idle()
+        else addEventListener('load', idle, { once: true })
+      })
+    whenIdle()
+      .then(() => import('./scene/gazeScene'))
       .then(({ createGazeScene }) => {
         if (cancelled || !ref.current) return
         scene = createGazeScene(ref.current, { points: innerWidth < 768 ? 1800 : 4200 })

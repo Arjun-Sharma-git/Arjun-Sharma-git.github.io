@@ -1,12 +1,15 @@
-import type { ReactNode } from 'react'
+import { Suspense, type ReactNode } from 'react'
 import type { QueryClient } from '@tanstack/react-query'
-import { HeadContent, Outlet, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
+import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
 import { profile } from '~/content'
+import { NotFound } from '~/components/layout'
 import { buildSeo } from '~/lib/seo'
 import css from '~/styles/global.css?url'
+import serif from '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url'
+import serifItalic from '@fontsource/instrument-serif/files/instrument-serif-latin-400-italic.woff2?url'
+import sans from '@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url'
 
 const seo = buildSeo(profile)
-const fonts = 'https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&display=swap'
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
@@ -14,9 +17,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     links: [
       { rel: 'canonical', href: seo.canonical },
       { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
-      { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
-      { rel: 'preconnect', href: 'https://fonts.gstatic.com', crossOrigin: 'anonymous' },
-      { rel: 'stylesheet', href: fonts },
+      { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },
+      { rel: 'manifest', href: '/site.webmanifest' },
+      // Preload above-the-fold fonts so the headline doesn't reflow when they swap in.
+      ...[serif, serifItalic, sans].map((href) => ({ rel: 'preload', href, as: 'font', type: 'font/woff2', crossOrigin: 'anonymous' as const })),
       { rel: 'stylesheet', href: css },
     ],
     scripts: [
@@ -25,16 +29,16 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { type: 'application/ld+json', children: JSON.stringify(seo.personJsonLd) },
     ],
   }),
-  component: RootLayout,
+  // The shell wraps every render, including not-found and error states, so <html> is always present.
+  shellComponent: RootDocument,
+  // 404.html is prerendered from the /404 route, whose match the server wraps in a Suspense boundary;
+  // mirroring it here lets that file hydrate cleanly at any unknown URL on GitHub Pages.
+  notFoundComponent: () => (
+    <Suspense>
+      <NotFound />
+    </Suspense>
+  ),
 })
-
-function RootLayout() {
-  return (
-    <RootDocument>
-      <Outlet />
-    </RootDocument>
-  )
-}
 
 function RootDocument({ children }: { children: ReactNode }) {
   return (

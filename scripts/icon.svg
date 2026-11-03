@@ -1,0 +1,2 @@
+<!-- Square app icon source. Export at 180, 192 and 512 px to public/apple-touch-icon.png, icon-192.png and icon-512.png. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="#1b1814"/><text x="32" y="45" font-family="Georgia,serif" font-size="38" text-anchor="middle" fill="#f5efe4">A</text></svg>

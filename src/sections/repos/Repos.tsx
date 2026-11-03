@@ -19,9 +19,9 @@ export function Repos() {
       </SectionHeading>
 
       {repos.length > 0 ? (
-        <ul className="mx-auto mt-14 grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <ul className="mx-auto mt-14 flex max-w-6xl flex-wrap justify-center gap-4">
           {repos.map((r) => (
-            <li key={r.name} data-reveal>
+            <li key={r.name} data-reveal className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.667rem)]">
               <RepoCard repo={r} />
             </li>
           ))}
