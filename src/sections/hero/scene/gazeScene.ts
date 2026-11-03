@@ -2,6 +2,17 @@ import * as THREE from 'three'
 
 type Options = { points: number }
 
+export type GazeScene = {
+  /** 0 = resting eye, 1 = camera has flown through the opened iris. Driven by scroll. */
+  setProgress: (p: number) => void
+  dispose: () => void
+}
+
+const smoothstep = (a: number, b: number, x: number) => {
+  const t = Math.min(Math.max((x - a) / (b - a), 0), 1)
+  return t * t * (3 - 2 * t)
+}
+
 const vertex = /* glsl */ `
   uniform float uSize;
   uniform float uTime;
@@ -12,9 +23,10 @@ const vertex = /* glsl */ `
     vec3 p = position * (1.0 + 0.015 * sin(uTime * 1.5 + position.y * 6.0));
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * mv;
-    gl_PointSize = uSize * aScale * uPixelRatio / -mv.z;
+    gl_PointSize = min(uSize * aScale * uPixelRatio / -mv.z, 48.0 * uPixelRatio);
     // Points on the far side of the sphere fade out, giving depth on a light background.
-    vAlpha = smoothstep(-7.4, -4.9, mv.z);
+    // Points that fly past the camera during the scroll zoom fade out instead of filling the screen.
+    vAlpha = smoothstep(-7.4, -4.9, mv.z) * (1.0 - smoothstep(-1.4, -0.3, mv.z));
   }
 `
 
@@ -79,8 +91,8 @@ function pointCloud({ pos, scale }: { pos: Float32Array; scale: Float32Array }, 
   return new THREE.Points(geo, material)
 }
 
-/** A point-cloud eyeball that looks toward the pointer. Returns a dispose function. */
-export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options) {
+/** A point-cloud eyeball that looks toward the pointer and zooms through its iris as `progress` goes 0 → 1. */
+export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options): GazeScene {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'high-performance' })
   const pixelRatio = Math.min(devicePixelRatio, 2)
   renderer.setPixelRatio(pixelRatio)
@@ -134,6 +146,7 @@ export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options) 
   const io = new IntersectionObserver(([entry]) => (visible = entry.isIntersecting))
   io.observe(canvas)
 
+  let progress = 0
   const start = performance.now()
   let raf = 0
   const tick = (now: number) => {
@@ -143,22 +156,30 @@ export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options) 
     const idle = now - lastMove > 2500
     const tx = idle ? Math.sin(t * 0.4) * 0.35 : target.x
     const ty = idle ? Math.sin(t * 0.27) * 0.2 : target.y
-    eye.rotation.y += (tx * 0.6 - eye.rotation.y) * 0.06
-    eye.rotation.x += (ty * 0.45 - eye.rotation.x) * 0.06
-    iris.rotation.z = t * 0.05
-    // Intro: ease the eye in over ~1.6s, and dilate the pupil gently.
+    // As the zoom starts the eye stops following the pointer and looks straight at the viewer.
+    const look = 1 - smoothstep(0, 0.35, progress)
+    eye.rotation.y += (tx * 0.6 * look - eye.rotation.y) * 0.08
+    eye.rotation.x += (ty * 0.45 * look - eye.rotation.x) * 0.08
+    iris.rotation.z = t * 0.05 + progress * 1.5
+    // Intro: ease the eye in over ~1.6s.
     const intro = 1 - Math.pow(1 - Math.min(t / 1.6, 1), 3)
     eye.scale.setScalar(Math.min(1, camera.aspect) * 1.35 * (0.6 + 0.4 * intro))
-    pupil.scale.setScalar(1 + 0.08 * Math.sin(t * 0.8))
-    for (const m of [shellMat, irisMat]) {
-      m.uniforms.uTime.value = t
-      m.uniforms.uOpacity.value = (m === shellMat ? SHELL_OPACITY : IRIS_OPACITY) * intro
-    }
+
+    // Scroll: dolly the camera into the eye while the iris opens outward and the pupil dilates.
+    camera.position.z = 6 - 4.4 * smoothstep(0, 1, progress)
+    iris.scale.setScalar(1 + 2.5 * smoothstep(0.2, 1, progress))
+    pupil.scale.setScalar((1 + 0.08 * Math.sin(t * 0.8)) * (1 + 5 * smoothstep(0.1, 0.9, progress)))
+    pupilMat.opacity = 0.16 * (1 - smoothstep(0.15, 0.55, progress))
+    const shellFade = 1 - smoothstep(0.55, 0.95, progress)
+    const irisFade = 1 - smoothstep(0.7, 1, progress)
+    shellMat.uniforms.uOpacity.value = SHELL_OPACITY * intro * shellFade
+    irisMat.uniforms.uOpacity.value = IRIS_OPACITY * intro * irisFade
+    for (const m of [shellMat, irisMat]) m.uniforms.uTime.value = t
     renderer.render(scene, camera)
   }
   raf = requestAnimationFrame(tick)
 
-  return () => {
+  const dispose = () => {
     cancelAnimationFrame(raf)
     removeEventListener('pointermove', onMove)
     ro.disconnect()
@@ -169,5 +190,12 @@ export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options) 
     irisMat.dispose()
     pupilMat.dispose()
     renderer.dispose()
+  }
+
+  return {
+    setProgress: (p) => {
+      progress = Math.min(Math.max(p, 0), 1)
+    },
+    dispose,
   }
 }

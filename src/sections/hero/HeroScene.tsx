@@ -1,29 +1,31 @@
 import { useEffect, useRef, useState } from 'react'
 import { canRender3D } from '~/lib/device'
+import type { GazeScene } from './scene/gazeScene'
 
 /**
  * WebGL eye behind the hero text. three.js is code-split and only downloaded on capable devices;
- * `onReady` lets the hero hide its 2D fallback once the scene is drawing.
+ * `onReady` hands the scene to the hero so scroll can drive it (and the 2D fallback can hide).
  */
-export function HeroScene({ onReady }: { onReady: () => void }) {
+export function HeroScene({ onReady }: { onReady: (scene: GazeScene | null) => void }) {
   const ref = useRef<HTMLCanvasElement>(null)
   const [ready, setReady] = useState(false)
 
   useEffect(() => {
     if (!canRender3D()) return
-    let dispose: (() => void) | undefined
+    let scene: GazeScene | undefined
     let cancelled = false
     import('./scene/gazeScene')
       .then(({ createGazeScene }) => {
         if (cancelled || !ref.current) return
-        dispose = createGazeScene(ref.current, { points: innerWidth < 768 ? 1800 : 4200 })
+        scene = createGazeScene(ref.current, { points: innerWidth < 768 ? 1800 : 4200 })
         setReady(true)
-        onReady()
+        onReady(scene)
       })
       .catch(() => {}) // fallback orb stays visible
     return () => {
       cancelled = true
-      dispose?.()
+      scene?.dispose()
+      onReady(null)
     }
   }, [onReady])
 
