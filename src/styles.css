@@ -1,0 +1,45 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-cream: #f5efe4;
+  --color-paper: #fbf8f2;
+  --color-ink: #1b1814;
+  --color-muted: #665e53;
+  --color-gold: #a27a45;
+  --color-gold-deep: #7d5a2c;
+  --color-line: #e2d9c8;
+  --font-serif: 'Instrument Serif', ui-serif, Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  scroll-padding-top: 6rem;
+}
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+::selection {
+  background: var(--color-gold);
+  color: var(--color-paper);
+}
+
+.grid-bg {
+  background-image:
+    linear-gradient(to right, rgb(27 24 20 / 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgb(27 24 20 / 0.05) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* Pre-hide only when JS is on and motion is allowed; GSAP reveals them. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal],
+  .js [data-hero-fade],
+  .js .eye,
+  .js header nav,
+  .js .hero-word > span {
+    visibility: hidden;
+  }
+}
