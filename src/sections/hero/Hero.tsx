@@ -1,9 +1,10 @@
-import { useRef } from 'react'
+import { useCallback, useRef, useState } from 'react'
 import { sectionIds } from '~/config/navigation'
 import { profile } from '~/content'
 import { ExternalLink } from '~/components/ui'
 import { usePointerFollow } from '~/hooks/usePointerFollow'
 import { GazeOrb } from './GazeOrb'
+import { HeroScene } from './HeroScene'
 import { StatusBadge } from './StatusBadge'
 import { useHeroAnimation } from './useHeroAnimation'
 
@@ -16,12 +17,15 @@ export function Hero() {
   const scope = useRef<HTMLElement>(null)
   useHeroAnimation(scope)
   usePointerFollow(scope, '.pupil')
+  const [has3D, setHas3D] = useState(false)
+  const on3DReady = useCallback(() => setHas3D(true), [])
 
   return (
     <section ref={scope} id={sectionIds.top} className="px-3 pt-3 sm:px-4 sm:pt-4">
       <div className="hero-card grid-bg relative flex min-h-[92svh] flex-col items-center justify-center overflow-hidden rounded-[28px] bg-gradient-to-b from-[#efe4d1] to-paper px-5 pb-16 pt-32 text-center">
         <div aria-hidden className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_50%_at_50%_0%,rgb(162_122_69/0.22),transparent_70%)]" />
-        <GazeOrb />
+        <HeroScene onReady={on3DReady} />
+        <GazeOrb hidden={has3D} />
 
         <StatusBadge>Open to work · {profile.location}</StatusBadge>
 
