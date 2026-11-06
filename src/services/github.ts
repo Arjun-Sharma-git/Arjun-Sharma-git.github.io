@@ -21,10 +21,13 @@ export async function fetchUserRepos(user: string): Promise<Repo[]> {
   return res.json()
 }
 
-type ShowcaseOptions = { user: string; hidden?: string[]; limit?: number }
+type ShowcaseOptions = { user: string; hidden?: string[]; descriptions?: Record<string, string>; limit?: number }
 
-/** Own, described repos only (newest first); skips forks, the profile README repo and anything in `hidden`. */
-export function selectShowcaseRepos(repos: Repo[], { user, hidden = [], limit = 9 }: ShowcaseOptions): Repo[] {
+/** Own, described repos only (newest first); skips forks, the profile README repo and anything in `hidden`. `descriptions` fills in repos with none on GitHub. */
+export function selectShowcaseRepos(repos: Repo[], { user, hidden = [], descriptions = {}, limit = 9 }: ShowcaseOptions): Repo[] {
   const skip = new Set([user, ...hidden].map((n) => n.toLowerCase()))
-  return repos.filter((r) => !r.fork && r.description?.trim() && !skip.has(r.name.toLowerCase())).slice(0, limit)
+  return repos
+    .map((r) => ({ ...r, description: r.description?.trim() || descriptions[r.name] || null }))
+    .filter((r) => !r.fork && r.description && !skip.has(r.name.toLowerCase()))
+    .slice(0, limit)
 }

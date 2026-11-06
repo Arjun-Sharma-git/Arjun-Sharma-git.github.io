@@ -1,14 +1,15 @@
 import { OG_IMAGE, SITE_URL, THEME_COLOR } from '~/config/site'
-import type { Profile } from '~/content'
+import { topSkills, type Profile } from '~/content'
 
 export function buildSeo(profile: Profile) {
   const title = `${profile.name} | ${profile.role}`
-  const description = `${profile.name} is a ${profile.role.toLowerCase()} in ${profile.location}, building real-time computer vision in Python and full-stack products with React, TypeScript and Node.js.`
+  const description = `${profile.name} is a ${profile.role.toLowerCase()} in ${profile.location}, building real-time computer vision with Python, PyTorch and OpenCV and web products with React, Next.js and Node.js.`
   const image = `${SITE_URL}${OG_IMAGE.path}`
 
   const meta = [
     { title },
     { name: 'description', content: description },
+    { name: 'keywords', content: topSkills.join(', ') },
     { name: 'author', content: profile.name },
     { name: 'theme-color', content: THEME_COLOR },
     { name: 'robots', content: 'index, follow, max-image-preview:large' },
@@ -34,7 +35,7 @@ export function buildSeo(profile: Profile) {
     email: `mailto:${profile.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Noida', addressCountry: 'IN' },
     sameAs: [profile.links.github, profile.links.linkedin],
-    knowsAbout: ['Computer Vision', 'Python', 'PyTorch', 'OpenCV', 'React', 'TypeScript', 'Node.js', 'MongoDB', 'Next.js', 'GSAP'],
+    knowsAbout: topSkills,
   }
 
   return { meta, canonical: SITE_URL, personJsonLd }

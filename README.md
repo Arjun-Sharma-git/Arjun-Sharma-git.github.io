@@ -2,12 +2,14 @@
 
 TanStack Start (Router + Query) + GSAP + Tailwind v4. Prerendered to static HTML with sitemap.
 
+Uses pnpm (version pinned in `packageManager`, lockfile is `pnpm-lock.yaml`).
+
 ```bash
-npm install
-npm run dev        # http://localhost:3000
-npm run typecheck  # tsc --noEmit
-npm run build      # static site in dist/client (prerendered index.html, sitemap.xml, robots.txt)
-npm run preview    # serve the build
+pnpm install
+pnpm dev           # http://localhost:3000
+pnpm typecheck     # tsc --noEmit
+pnpm build         # static site in dist/client (prerendered index.html, sitemap.xml, robots.txt)
+pnpm preview       # serve the build
 ```
 
 ## Structure
@@ -78,12 +80,12 @@ Using a different repo name serves the site under `/<repo>/`, which needs a base
 
 ## Repos section
 
-Shows your own GitHub repos that have a description, newest first. Starter repos are listed in
-`src/content/repos.ts`; add a description on GitHub to make a repo appear.
+Shows your own GitHub repos that have a description, newest first. In `src/content/repos.ts`,
+`hiddenRepos` lists what to leave out and `repoDescriptions` fills in repos with no description on GitHub.
 
 ## Quality checks
 
-`npm run typecheck`, `node --experimental-strip-types src/services/github.check.ts`, and Lighthouse
+`pnpm typecheck`, `node --experimental-strip-types src/services/github.check.ts`, and Lighthouse
 (last run: desktop 100/100/100/100, mobile 95/100/100/100 with gzip, CLS 0).
 - Social card: edit `scripts/og.html`, regenerate with the command in its header comment.
 - `dist/client` can be deployed to any static host.

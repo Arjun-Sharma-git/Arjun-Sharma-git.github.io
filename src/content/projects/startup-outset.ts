@@ -5,8 +5,8 @@ export default {
   order: 2,
   name: 'StartupOutset',
   kind: 'Web product',
-  description: 'A Next.js and TypeScript web platform for early-stage startups, built with the App Router and deployed on Vercel.',
-  tags: ['Next.js', 'TypeScript', 'React'],
+  description: 'A directory where founders pitch startups: GitHub sign-in with NextAuth, Markdown pitches stored in Sanity, search, and Sentry monitoring, on the Next.js 15 App Router.',
+  tags: ['Next.js', 'TypeScript', 'React', 'Sanity', 'NextAuth', 'Sentry'],
   repo: githubRepo('StartupOutset'),
   live: 'https://startup-outset.vercel.app',
 } satisfies Project

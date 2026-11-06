@@ -4,8 +4,8 @@ import { type Repo, selectShowcaseRepos } from './github.ts'
 
 const repo = (name: string, description: string | null, fork = false) => ({ name, description, fork }) as Repo
 const picked = selectShowcaseRepos(
-  [repo('me', 'profile'), repo('good', 'Does things'), repo('blank', null), repo('spaces', '  '), repo('forked', 'x', true), repo('Starter', 'demo')],
-  { user: 'me', hidden: ['starter'] },
-).map((r) => r.name)
-assert.deepEqual(picked, ['good'])
+  [repo('me', 'profile'), repo('good', 'Does things'), repo('blank', null), repo('spaces', '  '), repo('filled', null), repo('forked', 'x', true), repo('Starter', 'demo')],
+  { user: 'me', hidden: ['starter'], descriptions: { filled: 'From content', good: 'Ignored' } },
+).map((r) => `${r.name}: ${r.description}`)
+assert.deepEqual(picked, ['good: Does things', 'filled: From content'])
 console.log('github.check: ok')
