@@ -6,9 +6,10 @@ export const sectionIds = {
   contact: 'contact',
 } as const
 
+// Root-relative so the same links work from case study pages.
 export const navLinks = [
-  { label: 'Skills', href: `#${sectionIds.skills}` },
-  { label: 'Work', href: `#${sectionIds.work}` },
-  { label: 'Repos', href: `#${sectionIds.repos}` },
-  { label: 'Contact', href: `#${sectionIds.contact}` },
+  { label: 'Skills', href: `/#${sectionIds.skills}` },
+  { label: 'Work', href: `/#${sectionIds.work}` },
+  { label: 'Repos', href: `/#${sectionIds.repos}` },
+  { label: 'Contact', href: `/#${sectionIds.contact}` },
 ]

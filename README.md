@@ -26,7 +26,7 @@ src/
     ui/          small presentational primitives (ExternalLink, SectionHeading, Chip)
     layout/      Nav, Footer, SkipLink
   sections/      one folder per page section; section-only components/hooks live beside it
-  routes/        TanStack file routes (__root = document + head, index = page composition)
+  routes/        TanStack file routes (__root = document + head, index = home, work.$slug = case studies)
   styles/        global CSS and Tailwind theme tokens
 ```
 
@@ -37,24 +37,11 @@ Import with the `~/` alias (maps to `src/`).
 
 ## Adding a project
 
-Create one file in `src/content/projects/`, e.g. `my-app.ts`. It is picked up automatically, no other file to touch:
+Create one file in `src/content/projects/`, e.g. `my-app.ts`. It gets a card in the Work section and a case study
+page at `/work/my-app`. Copy `virtgaze.ts` for the shape, and add the path to `pages` in `vite.config.ts` so it is
+prerendered and lands in the sitemap. Leave out `repo` for private work and set `repoNote` instead.
 
-```ts
-import type { Project } from '../types'
-import { githubRepo } from '../profile'
-
-export default {
-  order: 6,                       // position in the Work section
-  name: 'My App',
-  kind: 'Full-stack app',
-  description: 'One or two sentences on what it does and why it matters.',
-  tags: ['React', 'Node.js'],
-  repo: githubRepo('my-app'),     // or any URL
-  live: 'https://my-app.vercel.app', // optional
-  // pipeline: ['Step', 'Step'],  // optional flow chips
-  // featured: true,              // optional dark, wide card
-} satisfies Project
-```
+The Work section is a two-column grid sized for two projects.
 
 ## Resume
 

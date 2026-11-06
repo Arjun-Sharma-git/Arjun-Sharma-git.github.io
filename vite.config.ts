@@ -11,11 +11,14 @@ export default defineConfig({
   plugins: [
     tailwindcss(),
     tanstackStart({
-      // Only crawl HTML pages; static files like resume.pdf are copied as-is from public/.
-      prerender: { enabled: true, crawlLinks: true, filter: ({ path }) => !/\.\w+$/.test(path) },
+      // Every page is listed below; crawling would also pick up /#section links as pages.
+      // work/x.html rather than work/x/index.html, so GitHub Pages serves /work/x without redirecting to a trailing slash.
+      prerender: { enabled: true, crawlLinks: false, autoSubfolderIndex: false },
       sitemap: { enabled: true, host: SITE_URL },
       pages: [
         { path: '/', sitemap: { priority: 1, changefreq: 'monthly' } },
+        { path: '/work/virtgaze', sitemap: { priority: 0.8, changefreq: 'monthly' } },
+        { path: '/work/reductxn', sitemap: { priority: 0.8, changefreq: 'monthly' } },
         { path: '/404', prerender: { enabled: true, outputPath: '/404.html' }, sitemap: { exclude: true } },
       ],
     }),

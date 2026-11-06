@@ -1,6 +1,8 @@
 // Repos never shown in the "Fresh from my GitHub" section: tutorials, course exercises and work in progress.
 export const hiddenRepos = [
   'desktop-tutorial',
+  'KanbanBackend',
+  'KanbanProject',
   'React-tic-tac-toe',
   'ToDoApp',
   'Video-Site-Backend',
@@ -15,7 +17,6 @@ export const hiddenRepos = [
 // are hidden automatically.
 export const repoDescriptions: Record<string, string> = {
   StartupOutset: 'Startup pitch directory on Next.js 15 with GitHub sign-in, Sanity CMS and Sentry.',
-  KanbanProject: 'React frontend for a Kanban board with a dashboard, calendar and task analytics.',
   ReactMovieApp: 'Personal dashboard with genre picks, live news and weather, notes and a timer.',
   'Stock-Prediction': 'Team project: an Express site and Python script that chart and project stock trends.',
 }
