@@ -14,9 +14,7 @@ export function Repos() {
 
   return (
     <section ref={scope} id={sectionIds.repos} className="px-4 py-24 sm:py-32">
-      <SectionHeading eyebrow="Open source" title="My" accent="repos.">
-        Pulled live from the GitHub API with TanStack Query, prerendered for speed.
-      </SectionHeading>
+      <SectionHeading eyebrow="Open source" title="My" accent="repos." />
 
       {repos.length > 0 ? (
         <ul className="mx-auto mt-14 flex max-w-6xl flex-wrap justify-center gap-4">

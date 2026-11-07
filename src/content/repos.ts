@@ -15,6 +15,11 @@ export const hiddenRepos = [
 
 // Used when a repo has no description on GitHub; a GitHub description always wins. Repos with neither
 // are hidden automatically.
+// Repos whose main home is elsewhere: the card links here instead of GitHub.
+export const repoLinks: Record<string, string> = {
+  Reductxn: 'https://gitlab.com/archer_16/reductxn',
+}
+
 // Shown first, in this order.
 export const pinnedRepos = ['Reductxn']
 

@@ -11,8 +11,15 @@ export const experience: Job[] = [
         type: 'Full-time',
         start: '2025-03',
         mode: 'On-site',
-        summary: 'Server-side and JavaScript engineering across the product.',
-        highlights: [],
+        highlights: [
+          {
+            points: [
+              'Architected a full-stack UAV telemetry and ground-control platform (React, TypeScript, Node.js/Express), with real-time two-way communication over custom MQTT broker interfaces, WebSockets and REST APIs.',
+              'Built a low-latency pipeline that ingests live camera and parameter data and streams video and telemetry to client dashboards with hardware-accelerated FFmpeg.',
+              'Scaled reliability for concurrent multi-drone fleet operations with priority-based message ordering and a local Redis caching and queueing layer.',
+            ],
+          },
+        ],
       },
     ],
   },

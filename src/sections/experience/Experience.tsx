@@ -53,7 +53,7 @@ export function Experience() {
             </p>
             {role.summary && <p className="mt-4 leading-relaxed text-muted">{role.summary}</p>}
             {role.highlights.map((h) => (
-              <div key={h.project} className="mt-5">
+              <div key={h.project ?? h.points[0]} className="mt-5">
                 {h.project && <h4 className="text-sm font-medium">{h.project}</h4>}
                 <ul className="mt-2 space-y-1.5 text-muted">
                   {h.points.map((p) => (
