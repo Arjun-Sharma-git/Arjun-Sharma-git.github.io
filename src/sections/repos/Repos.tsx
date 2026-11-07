@@ -13,7 +13,7 @@ export function Repos() {
   useScrollReveal(scope)
 
   return (
-    <section ref={scope} id={sectionIds.repos} className="px-4 py-24 sm:py-32">
+    <section ref={scope} id={sectionIds.repos} className="px-4 pt-24 pb-10 sm:py-32">
       <SectionHeading eyebrow="Open source" title="My" accent="repos." />
 
       {repos.length > 0 ? (

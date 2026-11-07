@@ -17,7 +17,7 @@ function Page() {
       <Nav />
       <main id="main">
         <VirtGazePage project={getProject('virtgaze')} />
-        <Contact />
+        <Contact onDark />
       </main>
     </>
   )

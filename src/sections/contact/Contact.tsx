@@ -7,7 +7,8 @@ import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
 import { ContactForm } from './ContactForm'
 
-export function Contact() {
+/** `onDark`: the page above is dark, so the rounded corners sit on that colour instead of cream. */
+export function Contact({ onDark = false }: { onDark?: boolean }) {
   const scope = useRef<HTMLElement>(null)
   useScrollReveal(scope)
   useGSAP(
@@ -20,13 +21,13 @@ export function Contact() {
   )
 
   return (
-    <section ref={scope} id={sectionIds.contact} className="px-3 pb-3 sm:px-4 sm:pb-4">
-      <div className="relative overflow-hidden rounded-[28px] bg-ink px-6 pt-14 pb-6 text-paper sm:pt-20">
+    <section ref={scope} id={sectionIds.contact} className={onDark ? 'bg-[#100e0b]' : undefined}>
+      <div className={`relative overflow-hidden rounded-t-[28px] bg-ink ${onDark ? 'border-t border-paper/10' : ''} px-5 pt-10 pb-5 text-paper sm:px-6 sm:pt-20 sm:pb-6`}>
         <div
           aria-hidden
           className="contact-glow pointer-events-none absolute left-1/2 top-1/2 size-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_0deg,rgb(162_122_69/0.35),transparent_30%,rgb(162_122_69/0.2)_60%,transparent)] blur-3xl"
         />
-        <div className="relative mx-auto grid max-w-5xl items-start gap-12 text-left md:grid-cols-[1fr_1.15fr]">
+        <div className="relative mx-auto grid max-w-5xl items-start gap-8 text-left md:gap-12 md:grid-cols-[1fr_1.15fr]">
           <div>
             <img
               data-reveal
