@@ -47,7 +47,7 @@ export function Hero() {
               ))}
             </h1>
 
-            <p className="relative mt-8 max-w-xl text-balance text-base leading-relaxed text-muted sm:text-lg">
+            <p className="relative mt-8 max-w-xl text-balance rounded-2xl bg-cream/75 px-3 py-2 text-base leading-relaxed text-ink/80 backdrop-blur-sm sm:bg-transparent sm:px-0 sm:py-0 sm:text-lg sm:text-muted sm:backdrop-blur-none">
               I'm <strong className="font-semibold text-ink">{profile.name}</strong>, {profile.summary}
             </p>
 

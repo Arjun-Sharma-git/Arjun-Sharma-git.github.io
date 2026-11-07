@@ -223,7 +223,8 @@ export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options):
     const shellFade = 1 - smoothstep(0.55, 0.95, progress)
     const irisFade = 1 - smoothstep(0.7, 1, progress)
     // The brain spreads the same points over more surface, so it gets bigger, stronger dots.
-    const dense = 1 + 0.9 * morph[2]
+    // Phones put the cloud right behind the intro text, so it stays fainter there.
+    const dense = (1 + 0.9 * morph[2]) * (innerWidth < 640 ? 0.6 : 1)
     shellMat.uniforms.uOpacity.value = SHELL_OPACITY * intro * shellFade * dense
     irisMat.uniforms.uOpacity.value = IRIS_OPACITY * intro * irisFade * dense
     shellMat.uniforms.uSize.value = 15 * (1 + 0.3 * morph[2])
