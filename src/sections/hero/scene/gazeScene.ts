@@ -1,4 +1,5 @@
 import * as THREE from 'three'
+import { brainPoints, handPoints } from './shapes'
 
 type Options = { points: number }
 
@@ -17,10 +18,22 @@ const vertex = /* glsl */ `
   uniform float uSize;
   uniform float uTime;
   uniform float uPixelRatio;
+  uniform vec3 uMorph; // weights of eye, hand, brain; they sum to 1
+  uniform float uScatter; // peaks mid-morph so points burst outward and settle into the next shape
   attribute float aScale;
+  attribute vec3 aHand;
+  attribute vec3 aBrain;
+  attribute vec4 aBend; // knuckle y, knuckle z, phase, bend amount (0 palm .. 1 fingertip)
   varying float vAlpha;
   void main() {
-    vec3 p = position * (1.0 + 0.015 * sin(uTime * 1.5 + position.y * 6.0));
+    // Fingers curl toward the viewer around their knuckles, one after another.
+    vec3 h = aHand;
+    float ang = aBend.w * 0.95 * (0.5 + 0.5 * sin(uTime * 2.0 - aBend.z));
+    vec2 d = h.yz - aBend.xy;
+    h.yz = aBend.xy + vec2(d.x * cos(ang) - d.y * sin(ang), d.x * sin(ang) + d.y * cos(ang));
+    vec3 p = position * uMorph.x + h * uMorph.y + aBrain * uMorph.z;
+    p += normalize(position + vec3(0.0001)) * uScatter * 0.35 * aScale;
+    p *= 1.0 + 0.015 * sin(uTime * 1.5 + p.y * 6.0);
     vec4 mv = modelViewMatrix * vec4(p, 1.0);
     gl_Position = projectionMatrix * mv;
     gl_PointSize = min(uSize * aScale * uPixelRatio / -mv.z, 48.0 * uPixelRatio);
@@ -53,6 +66,8 @@ function pointsMaterial(color: string, size: number, opacity: number) {
       uOpacity: { value: opacity },
       uTime: { value: 0 },
       uPixelRatio: { value: 1 },
+      uMorph: { value: new THREE.Vector3(1, 0, 0) },
+      uScatter: { value: 0 },
     },
   })
 }
@@ -88,10 +103,34 @@ function pointCloud({ pos, scale }: { pos: Float32Array; scale: Float32Array }, 
   const geo = new THREE.BufferGeometry()
   geo.setAttribute('position', new THREE.BufferAttribute(pos, 3))
   geo.setAttribute('aScale', new THREE.BufferAttribute(scale, 1))
+  const count = scale.length
+  const hand = handPoints(count)
+  geo.setAttribute('aHand', new THREE.BufferAttribute(hand.pos, 3))
+  geo.setAttribute('aBend', new THREE.BufferAttribute(hand.bend, 4))
+  geo.setAttribute('aBrain', new THREE.BufferAttribute(brainPoints(count), 3))
   return new THREE.Points(geo, material)
 }
 
-/** A point-cloud eyeball that looks toward the pointer and zooms through its iris as `progress` goes 0 → 1. */
+// Morph cycle: hold each shape, then flow into the next (eye → hand → brain → eye).
+const HOLD = 3.6
+const MORPH = 1.8
+
+/** Weights of [eye, hand, brain] at time t, plus how far mid-morph we are (0..1, peaking halfway). */
+function cycle(t: number): { w: [number, number, number]; scatter: number } {
+  const seg = HOLD + MORPH
+  const from = Math.floor(t / seg) % 3
+  const local = t % seg
+  const m = smoothstep(HOLD, seg, local)
+  const w: [number, number, number] = [0, 0, 0]
+  w[from] += 1 - m
+  w[(from + 1) % 3] += m
+  return { w, scatter: Math.sin(Math.PI * m) }
+}
+
+/**
+ * A point cloud that looks toward the pointer and cycles eye → hand → brain while resting,
+ * and returns to the eye and zooms through its iris as `progress` goes 0 → 1.
+ */
 export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options): GazeScene {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'high-performance' })
   const pixelRatio = Math.min(devicePixelRatio, 2)
@@ -154,13 +193,24 @@ export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options):
     if (!visible) return
     const t = (now - start) / 1000
     const idle = now - lastMove > 2500
+    // Shape cycle, starting after the intro; scrolling pulls it back to the eye for the fly-through.
+    const { w, scatter } = cycle(Math.max(t - 2, 0))
+    const toEye = smoothstep(0, 0.12, progress)
+    const morph = [w[0] + (1 - w[0]) * toEye, w[1] * (1 - toEye), w[2] * (1 - toEye)] as const
+    const handW = morph[1]
     const tx = idle ? Math.sin(t * 0.4) * 0.35 : target.x
     const ty = idle ? Math.sin(t * 0.27) * 0.2 : target.y
     // As the zoom starts the eye stops following the pointer and looks straight at the viewer.
     const look = 1 - smoothstep(0, 0.35, progress)
-    eye.rotation.y += (tx * 0.6 * look - eye.rotation.y) * 0.08
-    eye.rotation.x += (ty * 0.45 * look - eye.rotation.x) * 0.08
-    iris.rotation.z = t * 0.05 + progress * 1.5
+    // The hand turns its palm further toward the pointer than the eye does.
+    const turn = 1 + 0.6 * handW
+    eye.rotation.y += (tx * 0.6 * turn * look - eye.rotation.y) * 0.08
+    eye.rotation.x += (ty * 0.45 * turn * look - eye.rotation.x) * 0.08
+    for (const m of [shellMat, irisMat]) {
+      m.uniforms.uMorph.value.set(...morph)
+      m.uniforms.uScatter.value = scatter * (1 - toEye)
+    }
+    iris.rotation.z = (t * 0.05 + progress * 1.5) * morph[0]
     // Intro: ease the eye in over ~1.6s.
     const intro = 1 - Math.pow(1 - Math.min(t / 1.6, 1), 3)
     eye.scale.setScalar(Math.min(1, camera.aspect) * 1.35 * (0.6 + 0.4 * intro))
@@ -169,11 +219,15 @@ export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options):
     camera.position.z = 6 - 4.4 * smoothstep(0, 1, progress)
     iris.scale.setScalar(1 + 2.5 * smoothstep(0.2, 1, progress))
     pupil.scale.setScalar((1 + 0.08 * Math.sin(t * 0.8)) * (1 + 5 * smoothstep(0.1, 0.9, progress)))
-    pupilMat.opacity = 0.16 * (1 - smoothstep(0.15, 0.55, progress))
+    pupilMat.opacity = 0.16 * (1 - smoothstep(0.15, 0.55, progress)) * smoothstep(0.6, 1, morph[0])
     const shellFade = 1 - smoothstep(0.55, 0.95, progress)
     const irisFade = 1 - smoothstep(0.7, 1, progress)
-    shellMat.uniforms.uOpacity.value = SHELL_OPACITY * intro * shellFade
-    irisMat.uniforms.uOpacity.value = IRIS_OPACITY * intro * irisFade
+    // The brain spreads the same points over more surface, so it gets bigger, stronger dots.
+    const dense = 1 + 0.9 * morph[2]
+    shellMat.uniforms.uOpacity.value = SHELL_OPACITY * intro * shellFade * dense
+    irisMat.uniforms.uOpacity.value = IRIS_OPACITY * intro * irisFade * dense
+    shellMat.uniforms.uSize.value = 15 * (1 + 0.3 * morph[2])
+    irisMat.uniforms.uSize.value = 17 * (1 + 0.3 * morph[2])
     for (const m of [shellMat, irisMat]) m.uniforms.uTime.value = t
     renderer.render(scene, camera)
   }

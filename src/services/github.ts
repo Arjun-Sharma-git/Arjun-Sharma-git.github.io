@@ -21,13 +21,19 @@ export async function fetchUserRepos(user: string): Promise<Repo[]> {
   return res.json()
 }
 
-type ShowcaseOptions = { user: string; hidden?: string[]; descriptions?: Record<string, string>; limit?: number }
+type ShowcaseOptions = { user: string; hidden?: string[]; descriptions?: Record<string, string>; pinned?: string[]; limit?: number }
 
-/** Own, described repos only (newest first); skips forks, the profile README repo and anything in `hidden`. `descriptions` fills in repos with none on GitHub. */
-export function selectShowcaseRepos(repos: Repo[], { user, hidden = [], descriptions = {}, limit = 9 }: ShowcaseOptions): Repo[] {
+/** Own, described repos only (newest first); skips forks, the profile README repo and anything in `hidden`. `descriptions` fills in repos with none on GitHub; `pinned` repos come first, in that order. */
+export function selectShowcaseRepos(repos: Repo[], { user, hidden = [], descriptions = {}, pinned = [], limit = 9 }: ShowcaseOptions): Repo[] {
+  const order = pinned.map((n) => n.toLowerCase())
+  const rank = (name: string) => {
+    const i = order.indexOf(name.toLowerCase())
+    return i === -1 ? order.length : i
+  }
   const skip = new Set([user, ...hidden].map((n) => n.toLowerCase()))
   return repos
     .map((r) => ({ ...r, description: r.description?.trim() || descriptions[r.name] || null }))
     .filter((r) => !r.fork && r.description && !skip.has(r.name.toLowerCase()))
+    .sort((a, b) => rank(a.name) - rank(b.name)) // stable, so the rest stay newest first
     .slice(0, limit)
 }
