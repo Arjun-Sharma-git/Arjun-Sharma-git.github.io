@@ -48,6 +48,12 @@ export default {
         { name: 'Screen coordinates', detail: 'A per-user bias map removes location-dependent error before the cursor moves.' },
       ],
     },
+    demo: {
+      title: 'Same eye,',
+      accent: 'calmer cursor.',
+      intro: 'Raw gaze estimates jitter even when the eye holds still. A One Euro filter smooths heavily at low speed and lets go at high speed, so fixations stay steady and jumps stay fast. Move your pointer across the panel.',
+      note: 'A real One Euro filter running in your browser on synthetic noise, as an illustration. VirtGaze pairs it with an unscented Kalman filter.',
+    },
     stack: [
       { label: 'Vision', items: ['Python', 'OpenCV', 'MediaPipe', 'NumPy', 'SciPy'] },
       { label: 'Model', items: ['PyTorch', 'ONNX Runtime', 'TensorRT'] },

@@ -46,3 +46,77 @@ body {
     visibility: hidden;
   }
 }
+
+/* Ruled ledger paper with a margin line, for the Reductxn page. */
+.ledger-paper {
+  background-image:
+    linear-gradient(to right, transparent 3.2rem, rgb(162 122 69 / 0.28) 3.2rem, rgb(162 122 69 / 0.28) calc(3.2rem + 1px), transparent calc(3.2rem + 1px)),
+    repeating-linear-gradient(to bottom, transparent 0 31px, rgb(27 24 20 / 0.055) 31px 32px);
+}
+
+.tape-window {
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .tape {
+    animation: tape 46s linear infinite;
+  }
+  .flow-packet {
+    animation: packet-y 2.6s ease-in-out infinite;
+  }
+  .flow-packet-late {
+    animation-delay: 1.3s;
+  }
+  @media (min-width: 768px) {
+    .flow-packet {
+      animation-name: packet-x;
+    }
+  }
+}
+@keyframes tape {
+  to {
+    transform: translateY(-50%);
+  }
+}
+.flow-packet {
+  left: 50%;
+  top: 50%;
+  translate: -50% -50%;
+}
+@keyframes packet-y {
+  from {
+    top: 0;
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    top: 100%;
+    opacity: 0;
+  }
+}
+@keyframes packet-x {
+  from {
+    left: 0;
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* The pointer's light on the VirtGaze decisions grid. */
+.gaze-grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(260px circle at calc(var(--x, -999) * 1px) calc(var(--y, -999) * 1px), rgb(226 190 134 / 0.16), transparent 70%);
+}

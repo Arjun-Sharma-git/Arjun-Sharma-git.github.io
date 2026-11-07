@@ -27,20 +27,25 @@ export type CaseStudy = {
   approach: { title: string; accent: string; intro: string; stages: { name: string; detail: string }[] }
   stack: { label: string; items: string[] }[]
   decisions: { title: string; body: string }[]
+  /** Copy for the page's interactive piece. */
+  demo?: { title: string; accent: string; intro: string; note: string; steps?: { name: string; detail: string }[] }
+  flow?: { title: string; accent: string; intro: string; nodes: { tag: string; name: string; detail: string }[] }
+  history?: { title: string; accent: string; quorum: string; body: string[] }
 }
 
 export type Project = {
   /** Position in the Work section, lowest first. */
   order: number
-  /** URL of the case study page: /work/<slug>. */
-  slug: string
+  /** URL of the case study page: /work/<slug>. Each slug has its own route and page layout. */
+  slug: 'virtgaze' | 'reductxn'
   name: string
   kind: string
   description: string
   tags: string[]
-  /** Public source link. Leave out for private work and set `repoNote` instead. */
+  /** Public source link. */
   repo?: string
-  repoNote?: string
+  /** Label for that link, when plain "Source" isn't enough. */
+  repoLabel?: string
   live?: string
   pipeline?: string[]
   featured?: boolean

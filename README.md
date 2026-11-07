@@ -26,7 +26,7 @@ src/
     ui/          small presentational primitives (ExternalLink, SectionHeading, Chip)
     layout/      Nav, Footer, SkipLink
   sections/      one folder per page section; section-only components/hooks live beside it
-  routes/        TanStack file routes (__root = document + head, index = home, work.$slug = case studies)
+  routes/        TanStack file routes (__root = document + head, index = home, work.* = case studies)
   styles/        global CSS and Tailwind theme tokens
 ```
 
@@ -35,13 +35,16 @@ Import with the `~/` alias (maps to `src/`).
 
 - Edit text in `src/content/*`.
 
-## Adding a project
+## Projects
 
-Create one file in `src/content/projects/`, e.g. `my-app.ts`. It gets a card in the Work section and a case study
-page at `/work/my-app`. Copy `virtgaze.ts` for the shape, and add the path to `pages` in `vite.config.ts` so it is
-prerendered and lands in the sitemap. Leave out `repo` for private work and set `repoNote` instead.
+Work shows the two files in `src/content/projects/`. Each has a bespoke page, with its own route (`routes/work.*.tsx`)
+and section folder (`sections/virtgaze`, `sections/reductxn`), so its visuals ship in their own chunk. The visuals are
+canvas and SVG, and they fall back to a final still state with reduced motion.
 
-The Work section is a two-column grid sized for two projects.
+`sections/reductxn/netting.ts` is a port of Reductxn's settle-up engine. Its self-check compares it with brute force:
+`node --experimental-strip-types src/sections/reductxn/netting.check.ts`
+
+To add a project: add a content file, a slug in `types.ts`, a route, a page, and the path to `pages` in `vite.config.ts`.
 
 ## Resume
 
