@@ -5,7 +5,6 @@ import { ExternalLink } from '~/components/ui'
 import { usePointerFollow } from '~/hooks/usePointerFollow'
 import { GazeOrb } from './GazeOrb'
 import { HeroScene } from './HeroScene'
-import { StatusBadge } from './StatusBadge'
 import type { GazeScene } from './scene/gazeScene'
 import { useHeroAnimation } from './useHeroAnimation'
 import { useHeroScroll } from './useHeroScroll'
@@ -33,8 +32,6 @@ export function Hero() {
           </div>
 
           <div className="hero-content relative flex flex-col items-center">
-            <StatusBadge>Open to work · {profile.location}</StatusBadge>
-
             <h1 className="relative font-serif text-[clamp(2.9rem,9vw,7.5rem)] leading-[0.95] tracking-tight">
               <span className="sr-only">
                 {profile.name}, {profile.role}.{' '}
