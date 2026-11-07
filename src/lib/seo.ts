@@ -32,6 +32,7 @@ export function buildSeo(profile: Profile) {
     name: profile.name,
     jobTitle: profile.role,
     url: SITE_URL,
+    image: `${SITE_URL}/arjun-480.webp`,
     worksFor: { '@type': 'Organization', name: experience[0].company },
     email: `mailto:${profile.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Noida', addressCountry: 'IN' },
