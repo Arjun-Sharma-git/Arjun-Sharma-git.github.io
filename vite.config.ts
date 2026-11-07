@@ -7,7 +7,11 @@ import { SITE_URL } from './src/config/site.ts'
 
 export default defineConfig({
   resolve: { tsconfigPaths: true },
-  define: { __HAS_RESUME__: JSON.stringify(existsSync('public/resume.pdf')) },
+  define: {
+    __HAS_RESUME__: JSON.stringify(existsSync('public/resume.pdf')),
+    // Build month, so "Present" durations in the prerendered HTML match what hydrates.
+    __BUILD_YM__: JSON.stringify(new Date().toISOString().slice(0, 7)),
+  },
   plugins: [
     tailwindcss(),
     tanstackStart({

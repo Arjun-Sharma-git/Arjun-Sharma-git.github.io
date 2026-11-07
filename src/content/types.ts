@@ -10,7 +10,16 @@ export type Profile = {
   links: { github: string; linkedin: string; resume?: string }
 }
 
-export type Stat = { value: number; prefix?: string; suffix?: string; label: string }
+export type Role = {
+  title: string
+  type: string
+  start: string // YYYY-MM
+  end?: string // YYYY-MM, omitted while current
+  mode: string
+  summary?: string
+  highlights: { project?: string; points: string[] }[]
+}
+export type Job = { company: string; location: string; roles: Role[] }
 
 export type SkillGroup = { id: string; title: string; headline: string; body: string; skills: string[] }
 

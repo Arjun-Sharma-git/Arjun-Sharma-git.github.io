@@ -2,7 +2,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { SITE_URL } from '~/config/site'
 import { showcaseReposQuery } from '~/queries/repos'
 import { Nav, SkipLink } from '~/components/layout'
-import { Contact, Hero, Repos, Skills, Stats, Work } from '~/sections'
+import { Contact, Hero, Repos, Experience, Skills, Work } from '~/sections'
 
 export const Route = createFileRoute('/')({
   loader: ({ context }) => context.queryClient.ensureQueryData(showcaseReposQuery),
@@ -17,8 +17,8 @@ function HomePage() {
       <Nav />
       <main id="main">
         <Hero />
-        <Stats />
         <Skills />
+        <Experience />
         <Work />
         <Repos />
         <Contact />

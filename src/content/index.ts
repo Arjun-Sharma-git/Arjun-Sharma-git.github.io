@@ -1,6 +1,6 @@
 export * from './types'
 export { profile } from './profile'
-export { stats } from './stats'
+export { experience } from './experience'
 export { skillGroups, topSkills } from './skills'
 export { projects } from './projects/index'
 export { hiddenRepos, repoDescriptions } from './repos'

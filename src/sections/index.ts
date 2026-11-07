@@ -1,5 +1,5 @@
 export { Hero } from './hero/Hero'
-export { Stats } from './stats/Stats'
+export { Experience } from './experience/Experience'
 export { Skills } from './skills/Skills'
 export { Work } from './work/Work'
 export { Repos } from './repos/Repos'

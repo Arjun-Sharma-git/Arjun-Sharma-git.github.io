@@ -1,5 +1,5 @@
 import { OG_IMAGE, SITE_URL, THEME_COLOR } from '~/config/site'
-import { topSkills, type Profile, type Project } from '~/content'
+import { experience, topSkills, type Profile, type Project } from '~/content'
 
 export function buildSeo(profile: Profile) {
   const title = `${profile.name} | ${profile.role}`
@@ -32,6 +32,7 @@ export function buildSeo(profile: Profile) {
     name: profile.name,
     jobTitle: profile.role,
     url: SITE_URL,
+    worksFor: { '@type': 'Organization', name: experience[0].company },
     email: `mailto:${profile.email}`,
     address: { '@type': 'PostalAddress', addressLocality: 'Noida', addressCountry: 'IN' },
     sameAs: [profile.links.github, profile.links.linkedin],
