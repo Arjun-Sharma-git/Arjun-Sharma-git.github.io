@@ -31,6 +31,18 @@ export type CaseStudy = {
   demo?: { title: string; accent: string; intro: string; note: string; steps?: { name: string; detail: string }[] }
   /** Screens from the running app; `image` is the file name in public/work/<slug>/, without its size suffix. */
   walkthrough?: { title: string; accent: string; intro: string; note: string; steps: { image: string; name: string; detail: string; alt: string }[] }
+  /** A machine-checked proof of the project's central claim, shown at /work/<slug>/proof. */
+  proof?: {
+    seoTitle: string
+    seoDescription: string
+    title: string
+    accent: string
+    note: string
+    theorem: string
+    steps: { name: string; detail: string }[]
+    limits: string[]
+    facts: { label: string; value: string }[]
+  }
   flow?: { title: string; accent: string; intro: string; nodes: { tag: string; name: string; detail: string }[] }
 }
 

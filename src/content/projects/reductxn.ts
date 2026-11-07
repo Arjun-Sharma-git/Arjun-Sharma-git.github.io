@@ -44,6 +44,37 @@ export default {
         { name: 'Pay the fewest', detail: 'Each group of s people settles in s − 1 payments. Eight people, three groups, five payments: proven fewest, not just a good guess.' },
       ],
     },
+    proof: {
+      seoTitle: 'Reductxn settle-up optimality proof in Lean 4',
+      seoDescription:
+        'A machine-checked Lean 4 proof that n − k payments is the true minimum for settling a group, where k is the most zero-sum groups its members split into.',
+      title: 'Fewest payments,',
+      accent: 'proved in Lean.',
+      note: '“Proven fewest” rests on one theorem, and Lean 4 has checked it: no plan can settle a group in fewer than n − k payments.',
+      theorem:
+        'For whole-number balances that sum to zero, take the n people with a non-zero balance, and let k be the most groups they can be split into so that every group sums to zero. Then n − k payments can settle everyone, and no plan does it in fewer.',
+      steps: [
+        {
+          name: 'No plan can do better',
+          detail: 'Start with everyone in a group of their own. Each payment merges at most two groups, and every group stays zero-sum. So a plan of m payments leaves at least n − m zero-sum groups of the people it settles. There can be at most k of those, so m is at least n − k.',
+        },
+        {
+          name: 'n − k is reachable',
+          detail: 'Take one person in a zero-sum group of s people and clear their whole balance against someone else in it. That takes at most one payment, and leaves a zero-sum group of s − 1. So a group settles in at most s − 1 payments, and all k groups together take at most n − k.',
+        },
+      ],
+      limits: [
+        'It proves the mathematics the engine relies on, not that the Java code is free of bugs. The engine has its own tests against an independent brute force.',
+        'It says nothing about the greedy plan above 20 people, which the app only calls fewest when it meets a lower bound.',
+        'It doesn’t cover choosing between equally short plans by estimated cost.',
+      ],
+      facts: [
+        { label: 'Prover', value: 'Lean 4.35.0' },
+        { label: 'Library', value: 'Mathlib v4.35.0' },
+        { label: 'Unproved steps', value: 'None' },
+        { label: 'Axioms used', value: 'propext, Classical.choice, Quot.sound' },
+      ],
+    },
     walkthrough: {
       title: 'Now in',
       accent: 'the real app.',

@@ -7,6 +7,7 @@ import { Condensation } from './Condensation'
 import { CycleRing } from './CycleRing'
 import { LedgerTape } from './LedgerTape'
 import { OutboxFlow } from './OutboxFlow'
+import { ProofNote } from './ProofNote'
 import { Walkthrough } from './Walkthrough'
 
 function Hero({ project: p }: { project: Project }) {
@@ -132,6 +133,7 @@ export function ReductxnPage({ project }: { project: Project }) {
       <Hero project={project} />
       <Problem project={project} />
       <Condensation project={project} />
+      <ProofNote project={project} />
       <Walkthrough project={project} />
       <CycleRing project={project} />
       <OutboxFlow project={project} />

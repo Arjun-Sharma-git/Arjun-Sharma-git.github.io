@@ -19,6 +19,7 @@ export default defineConfig({
         { path: '/', sitemap: { priority: 1, changefreq: 'monthly' } },
         { path: '/work/virtgaze', sitemap: { priority: 0.8, changefreq: 'monthly' } },
         { path: '/work/reductxn', sitemap: { priority: 0.8, changefreq: 'monthly' } },
+        { path: '/work/reductxn/proof', sitemap: { priority: 0.6, changefreq: 'yearly' } },
         { path: '/404', prerender: { enabled: true, outputPath: '/404.html' }, sitemap: { exclude: true } },
       ],
     }),

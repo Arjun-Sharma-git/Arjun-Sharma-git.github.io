@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as WorkReductxnRouteImport } from './routes/work.reductxn'
 import { Route as WorkVirtgazeRouteImport } from './routes/work.virtgaze'
+import { Route as WorkReductxnProofRouteImport } from './routes/work.reductxn_.proof'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -34,18 +35,25 @@ const WorkVirtgazeRoute = WorkVirtgazeRouteImport.update({
   path: '/work/virtgaze',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkReductxnProofRoute = WorkReductxnProofRouteImport.update({
+  id: '/work/reductxn_/proof',
+  path: '/work/reductxn/proof',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/work/reductxn': typeof WorkReductxnRoute
   '/work/virtgaze': typeof WorkVirtgazeRoute
+  '/work/reductxn/proof': typeof WorkReductxnProofRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/work/reductxn': typeof WorkReductxnRoute
   '/work/virtgaze': typeof WorkVirtgazeRoute
+  '/work/reductxn/proof': typeof WorkReductxnProofRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,22 @@ export interface FileRoutesById {
   '/404': typeof R404Route
   '/work/reductxn': typeof WorkReductxnRoute
   '/work/virtgaze': typeof WorkVirtgazeRoute
+  '/work/reductxn_/proof': typeof WorkReductxnProofRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/404' | '/work/reductxn' | '/work/virtgaze'
+  fullPaths:
+    '/' | '/404' | '/work/reductxn' | '/work/virtgaze' | '/work/reductxn/proof'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/404' | '/work/reductxn' | '/work/virtgaze'
-  id: '__root__' | '/' | '/404' | '/work/reductxn' | '/work/virtgaze'
+  to:
+    '/' | '/404' | '/work/reductxn' | '/work/virtgaze' | '/work/reductxn/proof'
+  id:
+    | '__root__'
+    | '/'
+    | '/404'
+    | '/work/reductxn'
+    | '/work/virtgaze'
+    | '/work/reductxn_/proof'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +84,7 @@ export interface RootRouteChildren {
   R404Route: typeof R404Route
   WorkReductxnRoute: typeof WorkReductxnRoute
   WorkVirtgazeRoute: typeof WorkVirtgazeRoute
+  WorkReductxnProofRoute: typeof WorkReductxnProofRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -99,6 +117,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkVirtgazeRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/reductxn_/proof': {
+      id: '/work/reductxn_/proof'
+      path: '/work/reductxn/proof'
+      fullPath: '/work/reductxn/proof'
+      preLoaderRoute: typeof WorkReductxnProofRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -107,6 +132,7 @@ const rootRouteChildren: RootRouteChildren = {
   R404Route: R404Route,
   WorkReductxnRoute: WorkReductxnRoute,
   WorkVirtgazeRoute: WorkVirtgazeRoute,
+  WorkReductxnProofRoute: WorkReductxnProofRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

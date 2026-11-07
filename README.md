@@ -46,6 +46,8 @@ canvas and SVG, and they fall back to a final still state with reduced motion.
 
 Reductxn's walkthrough screens are in `public/work/reductxn/`: captured from the app at 390px wide with its demo seed, as WebP at 280 and 560px.
 
+`proofs/settle-up/` is a Lean 4 project proving the settle-up theorem. `/work/reductxn/proof` renders its source directly, so the page can't drift from what Lean checked. After changing it, run `lake build` there.
+
 To add a project: add a content file, a slug in `types.ts`, a route, a page, and the path to `pages` in `vite.config.ts`.
 
 ## Resume
