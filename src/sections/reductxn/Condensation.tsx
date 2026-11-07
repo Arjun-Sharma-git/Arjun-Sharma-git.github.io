@@ -205,7 +205,7 @@ export function Condensation({ project }: { project: Project }) {
           ))}
         </ol>
       </div>
-      <p className="mt-2 text-xs text-muted">{demo.note}</p>
+      {demo.note && <p className="mt-2 text-xs text-muted">{demo.note}</p>}
     </section>
   )
 }

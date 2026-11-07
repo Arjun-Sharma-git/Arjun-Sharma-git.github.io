@@ -36,7 +36,6 @@ export default {
       title: 'Many debts,',
       accent: 'condensed.',
       intro: 'Scroll to run settle-up on a sample group of eight people. The animation plays a real result, computed by a port of the engine’s exact search.',
-      note: 'Sample data. Amounts are illustrative; the plan is computed, not drawn by hand.',
       steps: [
         { name: 'Everyone records', detail: 'Twenty debts between eight people. Paying each one directly would take twenty transfers.' },
         { name: 'Debts become balances', detail: 'Only each person’s net position matters. Every line collapses into one number, and the numbers sum to zero.' },

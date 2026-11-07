@@ -114,7 +114,7 @@ export function FilterDemo({ project }: { project: Project }) {
             One Euro filtered
           </li>
         </ul>
-        <p className="mt-4 text-xs leading-relaxed text-paper/45">{demo.note}</p>
+        {demo.note && <p className="mt-4 text-xs leading-relaxed text-paper/45">{demo.note}</p>}
       </div>
       <div data-reveal className="overflow-hidden rounded-[28px] border border-paper/10 bg-[#171410]">
         <canvas ref={canvas} aria-hidden className="block h-[52svh] min-h-80 w-full touch-pan-y" />

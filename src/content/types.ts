@@ -28,7 +28,7 @@ export type CaseStudy = {
   stack: { label: string; items: string[] }[]
   decisions: { title: string; body: string }[]
   /** Copy for the page's interactive piece. */
-  demo?: { title: string; accent: string; intro: string; note: string; steps?: { name: string; detail: string }[] }
+  demo?: { title: string; accent: string; intro: string; note?: string; steps?: { name: string; detail: string }[] }
   /** Screens from the running app; `image` is the file name in public/work/<slug>/, without its size suffix. */
   walkthrough?: { title: string; accent: string; intro: string; note: string; steps: { image: string; name: string; detail: string; alt: string }[]
     languages?: { title: string; accent: string; detail: string; screens: { image: string; label: string; lang: string; alt: string }[] }
