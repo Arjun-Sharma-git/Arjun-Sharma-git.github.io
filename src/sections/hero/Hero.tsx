@@ -51,7 +51,7 @@ export function Hero() {
             </h1>
 
             <p className="relative mt-8 max-w-xl text-balance text-base leading-relaxed text-muted sm:text-lg">
-              I'm <strong className="font-semibold text-ink">{profile.name}</strong>, a {profile.role.toLowerCase()}. {profile.summary}
+              I'm <strong className="font-semibold text-ink">{profile.name}</strong>, {profile.summary}
             </p>
 
             <div data-hero-fade className="relative mt-10 flex flex-wrap items-center justify-center gap-3">

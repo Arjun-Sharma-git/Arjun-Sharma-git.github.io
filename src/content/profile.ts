@@ -8,7 +8,7 @@ export const profile: Profile = {
   role: 'Full-stack & Computer Vision Engineer',
   location: 'Noida, India',
   tagline: 'Developer · Solver · Optimiser',
-  summary: 'I turn webcams into input devices and ideas into shipped web products.',
+  summary: 'a full-stack software engineer working across frontend, backend and real-time systems.',
   email: 'arjunsharma1620@gmail.com',
   githubUser,
   links: {
