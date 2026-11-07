@@ -44,6 +44,44 @@ export default {
         { name: 'Pay the fewest', detail: 'Each group of s people settles in s − 1 payments. Eight people, three groups, five payments: proven fewest, not just a good guess.' },
       ],
     },
+    walkthrough: {
+      title: 'Now in',
+      accent: 'the real app.',
+      intro: 'A six-person trip with eight shared expenses, from the first typed line to the last payment.',
+      note: 'Screens from Reductxn running locally, with fictional demo data.',
+      steps: [
+        {
+          image: 'quick-add',
+          name: 'Say what happened',
+          detail: 'Type one line. Reductxn reads the amount, who paid and who was in, and shows you before anything is saved.',
+          alt: 'Quick add box containing “Momos 840 paid by Arun except Meera”, with a preview below: ₹840, Momos, Arun paid, split between you, Arun, Riya, Kabir and Dev.',
+        },
+        {
+          image: 'balances',
+          name: 'See where you stand',
+          detail: 'Every expense lands in the ledger, and each person’s balance updates. They always add up to zero.',
+          alt: 'Manali trip group page. You are owed ₹15,110, and a banner says 5 payments settle the whole group instead of 14. Bars show who gets back and who owes.',
+        },
+        {
+          image: 'flow',
+          name: 'Follow the money',
+          detail: 'The Flow view draws who paid for whom, and shows how tangled a group’s debts have become.',
+          alt: 'Flow tab with a dark graph of curved arrows between group members, showing who paid for whom.',
+        },
+        {
+          image: 'settle-up',
+          name: 'Settle in the fewest payments',
+          detail: 'Fourteen direct payments become five. The app can say “Proven fewest”, because the search is exact.',
+          alt: 'Settle up screen comparing a dense graph of 14 direct payments with 5 arrows. A note reads: Proven fewest. No plan can settle this group in fewer payments.',
+        },
+        {
+          image: 'mark-paid',
+          name: 'Pay, then mark it done',
+          detail: 'Money moves outside the app, by UPI, bank transfer or cash. Mark it paid, and the person paid confirms it.',
+          alt: 'Payment list showing four payments still to make. Dev’s ₹6,850 payment to you is marked Paid, with an Undo link.',
+        },
+      ],
+    },
     approach: {
       title: 'One cycle,',
       accent: 'closing at zero.',

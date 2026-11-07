@@ -44,6 +44,8 @@ canvas and SVG, and they fall back to a final still state with reduced motion.
 `sections/reductxn/netting.ts` is a port of Reductxn's settle-up engine. Its self-check compares it with brute force:
 `node --experimental-strip-types src/sections/reductxn/netting.check.ts`
 
+Reductxn's walkthrough screens are in `public/work/reductxn/`: captured from the app at 390px wide with its demo seed, as WebP at 280 and 560px.
+
 To add a project: add a content file, a slug in `types.ts`, a route, a page, and the path to `pages` in `vite.config.ts`.
 
 ## Resume

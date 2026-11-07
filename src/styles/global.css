@@ -120,3 +120,10 @@ body {
   pointer-events: none;
   background: radial-gradient(260px circle at calc(var(--x, -999) * 1px) calc(var(--y, -999) * 1px), rgb(226 190 134 / 0.16), transparent 70%);
 }
+
+/* Walkthrough phones step down the page on wide screens. */
+@media (min-width: 1024px) {
+  section[aria-labelledby='walkthrough'] ol {
+    --step: 1.75rem;
+  }
+}
