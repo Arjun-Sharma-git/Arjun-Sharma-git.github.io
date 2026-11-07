@@ -7,7 +7,7 @@ export const experience: Job[] = [
     location: 'Gurugram, India',
     roles: [
       {
-        title: 'Software Engineer',
+        title: 'Full-Stack Software Engineer',
         type: 'Full-time',
         start: '2025-03',
         mode: 'On-site',

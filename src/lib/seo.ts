@@ -3,7 +3,7 @@ import { experience, topSkills, type Profile, type Project } from '~/content'
 
 export function buildSeo(profile: Profile) {
   const title = `${profile.name} | ${profile.role}`
-  const description = `${profile.name} is a ${profile.role.toLowerCase()} in ${profile.location}, building real-time computer vision in Python and full-stack systems with Java, Spring Boot and React.`
+  const description = `${profile.name} is a ${profile.role.toLowerCase()} in ${profile.location}, building real-time platforms with React, TypeScript and Node.js, plus Java and Spring Boot systems and computer vision in Python.`
   const image = `${SITE_URL}${OG_IMAGE.path}`
 
   const meta = [

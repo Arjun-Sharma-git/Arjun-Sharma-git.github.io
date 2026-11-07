@@ -5,7 +5,7 @@ const githubUser = 'Arjun-Sharma-git'
 export const profile: Profile = {
   name: 'Arjun Sharma',
   firstName: 'Arjun',
-  role: 'Full-stack & Computer Vision Engineer',
+  role: 'Full-Stack Software Engineer',
   location: 'Noida, India',
   tagline: 'Developer · Solver · Optimiser',
   summary: 'a full-stack software engineer working across frontend, backend and real-time systems.',
