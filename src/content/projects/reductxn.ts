@@ -79,13 +79,19 @@ export default {
       title: 'Now in',
       accent: 'the real app.',
       intro: 'A six-person trip with eight shared expenses, from the first typed line to the last payment.',
-      note: 'Screens from Reductxn running locally, with fictional demo data.',
+      note: 'Screens from Reductxn running locally, with fictional demo data. The scan is a real result on a sample bill, including its misread of “Chai”.',
       steps: [
         {
           image: 'quick-add',
           name: 'Say what happened',
           detail: 'Type one line. Reductxn reads the amount, who paid and who was in, and shows you before anything is saved.',
           alt: 'Quick add box containing “Momos 840 paid by Arun except Meera”, with a preview below: ₹840, Momos, Arun paid, split between you, Arun, Riya, Kabir and Dev.',
+        },
+        {
+          image: 'scan-receipt',
+          name: 'Or scan the bill',
+          detail: 'Photograph a receipt and it’s read on your device, line by line. You check every line and fix anything it got wrong before saving.',
+          alt: 'Receipt review screen titled Check what was read, with a thumbnail of the bill beside editable lines for Steamed Momos 320, Thukpa 280, Apple Pie 180, Masala Chal 120 and Trout Fry.',
         },
         {
           image: 'balances',
@@ -112,6 +118,25 @@ export default {
           alt: 'Payment list showing four payments still to make. Dev’s ₹6,850 payment to you is marked Paid, with an Undo link.',
         },
       ],
+      languages: {
+        title: 'Speaks',
+        accent: 'your language.',
+        detail: 'The app, its emails and its notifications come in English, Hindi, Russian and Japanese. Money follows local habits too: the same payment reads 9 810 ₹ in Russian and ₹9,810 in Japanese.',
+        screens: [
+          {
+            image: 'settle-up-ru',
+            label: 'Русский',
+            lang: 'ru',
+            alt: 'The settle-up screen in Russian, comparing 14 direct payments with 4 and showing an amount written as 9 810 ₹.',
+          },
+          {
+            image: 'settle-up-ja',
+            label: '日本語',
+            lang: 'ja',
+            alt: 'The same settle-up screen in Japanese, comparing 14 direct payments with 4 and showing the amount written as ₹9,810.',
+          },
+        ],
+      },
     },
     approach: {
       title: 'One cycle,',

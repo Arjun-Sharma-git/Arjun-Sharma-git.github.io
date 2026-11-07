@@ -124,6 +124,6 @@ body {
 /* Walkthrough phones step down the page on wide screens. */
 @media (min-width: 1024px) {
   section[aria-labelledby='walkthrough'] ol {
-    --step: 1.75rem;
+    --step: 1.25rem;
   }
 }
