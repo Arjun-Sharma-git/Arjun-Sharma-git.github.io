@@ -6,7 +6,6 @@ import { BackLink, HeroLine, NextProject, eyebrow, heading, useIntro } from '../
 import { Condensation } from './Condensation'
 import { CycleRing } from './CycleRing'
 import { LedgerTape } from './LedgerTape'
-import { Origins } from './Origins'
 import { OutboxFlow } from './OutboxFlow'
 
 function Hero({ project: p }: { project: Project }) {
@@ -135,7 +134,6 @@ export function ReductxnPage({ project }: { project: Project }) {
       <CycleRing project={project} />
       <OutboxFlow project={project} />
       <Decisions project={project} />
-      <Origins project={project} />
       <Stack project={project} />
       <NextProject current={project} />
     </article>

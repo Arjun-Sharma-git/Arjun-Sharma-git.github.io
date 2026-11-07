@@ -1,8 +1,7 @@
 import type { SkillGroup } from './types'
 
 // Ordered by evidence: language bytes across my repos, Reductxn included (Java leads), then frameworks found in
-// each repo's manifests. Only what the code actually uses is listed: Kafka, Redis and Spring Batch were in
-// Reductxn v1's plans but never wired up, and v2 dropped them.
+// each repo's manifests. Only what the code actually uses is listed.
 export const skillGroups: SkillGroup[] = [
   {
     id: 'backend',

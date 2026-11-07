@@ -10,7 +10,7 @@ export default {
   pipeline: ['Expenses', 'Ledger', 'Balances', 'Zero-sum groups', 'Fewest payments'],
   tags: ['Java', 'Spring Boot', 'PostgreSQL', 'React', 'TypeScript', 'Kubernetes'],
   repo: 'https://gitlab.com/archer_16/reductxn',
-  repoLabel: 'v2 on GitLab',
+  repoLabel: 'Source on GitLab',
   caseStudy: {
     seoTitle: 'Provably minimal settle-up on an append-only ledger',
     seoDescription:
@@ -109,14 +109,5 @@ export default {
         body: 'Money is computed on both sides, so split maths, conversions and activity entries are pinned in shared fixtures that each side must reproduce to the cent.',
       },
     ],
-    history: {
-      title: 'What v2',
-      accent: 'left behind.',
-      quorum: 'From v1: a run could only execute after a majority of members, and every net debtor, confirmed personally. v2 removed this.',
-      body: [
-        'Version one modelled settlement on central bank digital currency, in a private repository. It had payment rails, a settlement worker, and a quorum before any run could execute.',
-        'Version two is a rewrite on GitLab, and simpler on purpose. Several services became one, the rails went, and money now moves outside the app, so people just mark payments done. In exchange, settle-up went from a greedy pass to a proven minimum.',
-      ],
-    },
   },
 } satisfies Project

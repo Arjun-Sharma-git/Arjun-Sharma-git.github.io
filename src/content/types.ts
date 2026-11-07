@@ -30,7 +30,6 @@ export type CaseStudy = {
   /** Copy for the page's interactive piece. */
   demo?: { title: string; accent: string; intro: string; note: string; steps?: { name: string; detail: string }[] }
   flow?: { title: string; accent: string; intro: string; nodes: { tag: string; name: string; detail: string }[] }
-  history?: { title: string; accent: string; quorum: string; body: string[] }
 }
 
 export type Project = {
