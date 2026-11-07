@@ -38,7 +38,7 @@ export function Nav() {
         )}
         <MobileMenu />
         <a href={`mailto:${profile.email}`} className="rounded-full bg-ink px-4 py-1.5 font-medium text-paper transition-transform hover:scale-[1.03]">
-          Hire me
+          Connect
         </a>
       </nav>
     </header>
