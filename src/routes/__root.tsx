@@ -2,7 +2,7 @@ import { Suspense, type ReactNode } from 'react'
 import type { QueryClient } from '@tanstack/react-query'
 import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
 import { profile } from '~/content'
-import { NotFound } from '~/components/layout'
+import { Backdrop, NotFound } from '~/components/layout'
 import { buildSeo } from '~/lib/seo'
 import css from '~/styles/global.css?url'
 import serif from '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url'
@@ -46,6 +46,7 @@ function RootDocument({ children }: { children: ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <Backdrop />
         {children}
         <Scripts />
       </body>
