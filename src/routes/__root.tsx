@@ -2,7 +2,8 @@ import { Suspense, type ReactNode } from 'react'
 import type { QueryClient } from '@tanstack/react-query'
 import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
 import { profile } from '~/content'
-import { Backdrop, NotFound } from '~/components/layout'
+import { Analytics, Backdrop, NotFound } from '~/components/layout'
+import { GOATCOUNTER_ENDPOINT } from '~/lib/analytics'
 import { buildSeo } from '~/lib/seo'
 import css from '~/styles/global.css?url'
 import serif from '@fontsource/instrument-serif/files/instrument-serif-latin-400-normal.woff2?url'
@@ -26,6 +27,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       // Hides animated elements only when JS runs, so no-JS crawlers and users see everything.
       { children: "document.documentElement.classList.add('js')" },
       { type: 'application/ld+json', children: JSON.stringify(seo.personJsonLd) },
+      { src: 'https://gc.zgo.at/count.js', async: true, 'data-goatcounter': GOATCOUNTER_ENDPOINT },
     ],
   }),
   // The shell wraps every render, including not-found and error states, so <html> is always present.
@@ -47,6 +49,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       </head>
       <body>
         <Backdrop />
+        <Analytics />
         {children}
         <Scripts />
       </body>

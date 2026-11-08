@@ -6,6 +6,7 @@ import { Footer } from '~/components/layout'
 import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
 import { ContactForm } from './ContactForm'
+import { trackEvent } from '~/lib/analytics'
 
 /** `onDark`: the page above is dark, so the rounded corners sit on that colour instead of cream. */
 export function Contact({ onDark = false }: { onDark?: boolean }) {
@@ -62,7 +63,7 @@ export function Contact({ onDark = false }: { onDark?: boolean }) {
                   GitHub
                 </ExternalLink>
                 {profile.links.resume && (
-                  <ExternalLink href={profile.links.resume} className="hover:text-paper">
+                  <ExternalLink href={profile.links.resume} onClick={() => trackEvent('resume-download', 'Resume download')} className="hover:text-paper">
                     Resume
                   </ExternalLink>
                 )}

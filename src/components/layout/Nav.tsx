@@ -4,6 +4,7 @@ import { navLinks, sectionIds } from '~/config/navigation'
 import { profile } from '~/content'
 import { ExternalLink } from '~/components/ui'
 import { MobileMenu } from './MobileMenu'
+import { trackEvent } from '~/lib/analytics'
 
 export function Nav() {
   const ref = useRef<HTMLElement>(null)
@@ -32,7 +33,7 @@ export function Nav() {
           </a>
         ))}
         {profile.links.resume && (
-          <ExternalLink href={profile.links.resume} className="hidden rounded-full px-3 py-1.5 text-muted md:inline transition-colors hover:text-ink">
+          <ExternalLink href={profile.links.resume} onClick={() => trackEvent('resume-download', 'Resume download')} className="hidden rounded-full px-3 py-1.5 text-muted md:inline transition-colors hover:text-ink">
             Resume
           </ExternalLink>
         )}

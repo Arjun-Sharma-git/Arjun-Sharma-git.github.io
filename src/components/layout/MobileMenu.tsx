@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { navLinks } from '~/config/navigation'
 import { profile } from '~/content'
 import { ExternalLink } from '~/components/ui'
+import { trackEvent } from '~/lib/analytics'
 
 const itemClass = 'block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream'
 
@@ -59,7 +60,7 @@ export function MobileMenu() {
           ))}
           {profile.links.resume && (
             <li>
-              <ExternalLink href={profile.links.resume} className={itemClass} onClick={() => setOpen(false)}>
+              <ExternalLink href={profile.links.resume} className={itemClass} onClick={() => { trackEvent('resume-download', 'Resume download'); setOpen(false) }}>
                 Resume
               </ExternalLink>
             </li>

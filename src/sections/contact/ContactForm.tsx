@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from 'react'
 import { profile } from '~/content'
+import { trackEvent } from '~/lib/analytics'
 
 const field =
   'w-full rounded-2xl border border-paper/15 bg-paper/5 px-4 py-3 text-paper placeholder:text-paper/35 outline-none transition-colors focus:border-gold focus:bg-paper/10'
@@ -18,6 +19,7 @@ export function ContactForm() {
     e.preventDefault()
     const data = new FormData(e.currentTarget)
     const href = mailtoFor(String(data.get('name')), String(data.get('email')), String(data.get('message')))
+    trackEvent('contact-send', 'Contact form sent')
     window.location.href = href
     setOpened(href)
   }

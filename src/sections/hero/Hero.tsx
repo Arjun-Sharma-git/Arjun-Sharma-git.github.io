@@ -8,6 +8,7 @@ import { HeroScene } from './HeroScene'
 import type { GazeScene } from './scene/gazeScene'
 import { useHeroAnimation } from './useHeroAnimation'
 import { useHeroScroll } from './useHeroScroll'
+import { trackEvent } from '~/lib/analytics'
 
 const headline = [
   ['I', 'build', 'software', 'that'],
@@ -65,6 +66,7 @@ export function Hero() {
               {profile.links.resume && (
                 <ExternalLink
                   href={profile.links.resume}
+                  onClick={() => trackEvent('resume-download', 'Resume download')}
                   className="rounded-full border border-line bg-paper/70 px-5 py-2 text-sm font-medium backdrop-blur transition-colors hover:border-ink"
                 >
                   Download resume
