@@ -1,0 +1,1 @@
+import{r as e}from"./layout-C-kgaK_J.js";var t=e;export{t as component};

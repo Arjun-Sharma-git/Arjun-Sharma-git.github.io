@@ -1,0 +1,40 @@
+{
+  "pages": [
+    {
+      "path": "/",
+      "sitemap": {
+        "priority": 1,
+        "changefreq": "monthly"
+      }
+    },
+    {
+      "path": "/work/virtgaze",
+      "sitemap": {
+        "priority": 0.8,
+        "changefreq": "monthly"
+      }
+    },
+    {
+      "path": "/work/reductxn",
+      "sitemap": {
+        "priority": 0.8,
+        "changefreq": "monthly"
+      }
+    },
+    {
+      "path": "/work/reductxn/proof",
+      "sitemap": {
+        "priority": 0.6,
+        "changefreq": "yearly"
+      }
+    },
+    {
+      "path": "/404",
+      "sitemap": {
+        "exclude": true
+      }
+    }
+  ],
+  "host": "https://arjun-sharma-git.github.io",
+  "lastBuilt": "2026-11-08T02:29:33.130Z"
+}

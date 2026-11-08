@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://arjun-sharma-git.github.io/sitemap.xml

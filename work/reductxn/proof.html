@@ -1,0 +1,442 @@
+<!DOCTYPE html><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/assets/global-ChBf-u4t.css" data-precedence="default"/><script src="https://gc.zgo.at/count.js" async="" data-goatcounter="https://arjunsharma.goatcounter.com/count"></script><title>Reductxn settle-up optimality proof in Lean 4 | Arjun Sharma</title><meta name="keywords" content="TypeScript, React, Node.js, Express, Java, Spring Boot, PostgreSQL, MongoDB, Redis, WebSockets, MQTT, Next.js, TanStack, Docker, Python, Computer Vision"/><meta name="author" content="Arjun Sharma"/><meta name="theme-color" content="#f5efe4"/><meta name="robots" content="index, follow, max-image-preview:large"/><meta property="og:image" content="https://arjun-sharma-git.github.io/og.png"/><meta property="og:image:width" content="1200"/><meta property="og:image:height" content="630"/><meta name="twitter:card" content="summary_large_image"/><meta name="twitter:image" content="https://arjun-sharma-git.github.io/og.png"/><meta name="description" content="A machine-checked Lean 4 proof that n − k payments is the true minimum for settling a group, where k is the most zero-sum groups its members split into."/><meta property="og:type" content="article"/><meta property="og:title" content="Reductxn settle-up optimality proof in Lean 4 | Arjun Sharma"/><meta property="og:description" content="A machine-checked Lean 4 proof that n − k payments is the true minimum for settling a group, where k is the most zero-sum groups its members split into."/><meta property="og:url" content="https://arjun-sharma-git.github.io/work/reductxn/proof"/><meta name="twitter:title" content="Reductxn settle-up optimality proof in Lean 4 | Arjun Sharma"/><meta name="twitter:description" content="A machine-checked Lean 4 proof that n − k payments is the true minimum for settling a group, where k is the most zero-sum groups its members split into."/><link rel="modulepreload" href="/assets/index-Q7iwZyp2.js" fetchPriority="low"/><link rel="modulepreload" href="/assets/rolldown-runtime-XKyaHtl9.js" fetchPriority="low"/><link rel="modulepreload" href="/assets/layout-C-kgaK_J.js" fetchPriority="low"/><link rel="modulepreload" href="/assets/skills-ufEPUF16.js" fetchPriority="low"/><link rel="modulepreload" href="/assets/work.reductxn_.proof-C9sAT9Nn.js" fetchPriority="low"/><link rel="modulepreload" href="/assets/Contact-Lh_AhowL.js" fetchPriority="low"/><link rel="modulepreload" href="/assets/shared-CRcSwHHj.js" fetchPriority="low"/><link rel="icon" href="/favicon.svg" type="image/svg+xml"/><link rel="apple-touch-icon" href="/apple-touch-icon.png"/><link rel="manifest" href="/site.webmanifest"/><link rel="preload" href="/assets/instrument-serif-latin-400-normal-DnYpCC2O.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href="/assets/instrument-serif-latin-400-italic-DKMiL14s.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="preload" href="/assets/inter-latin-wght-normal-Dx4kXJAl.woff2" as="font" type="font/woff2" crossorigin="anonymous"/><link rel="canonical" href="https://arjun-sharma-git.github.io/work/reductxn/proof"/><script>document.documentElement.classList.add('js')</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Arjun Sharma","jobTitle":"Full-Stack Software Engineer","url":"https://arjun-sharma-git.github.io","image":"https://arjun-sharma-git.github.io/arjun-480.webp","worksFor":{"@type":"Organization","name":"ZenDot"},"email":"mailto:arjunsharma1620@gmail.com","address":{"@type":"PostalAddress","addressLocality":"Noida","addressCountry":"IN"},"sameAs":["https://github.com/Arjun-Sharma-git","https://www.linkedin.com/in/arjunsharma16/"],"knowsAbout":["TypeScript","React","Node.js","Express","Java","Spring Boot","PostgreSQL","MongoDB","Redis","WebSockets","MQTT","Next.js","TanStack","Docker","Python","Computer Vision"]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"TechArticle","headline":"Reductxn settle-up optimality proof in Lean 4","description":"A machine-checked Lean 4 proof that n − k payments is the true minimum for settling a group, where k is the most zero-sum groups its members split into.","url":"https://arjun-sharma-git.github.io/work/reductxn/proof","author":{"@type":"Person","name":"Arjun Sharma","url":"https://arjun-sharma-git.github.io"}}</script></head><body><div aria-hidden="true" class="backdrop"><div class="backdrop-glow backdrop-glow-a"></div><div class="backdrop-glow backdrop-glow-b"></div><div class="backdrop-glow backdrop-glow-c"></div><div class="backdrop-grain"></div></div><!--$--><a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-full focus:bg-ink focus:px-4 focus:py-2 focus:text-paper">Skip to content</a><header class="fixed inset-x-0 top-4 z-40 flex justify-center px-4"><nav aria-label="Primary" class="relative flex items-center gap-1 rounded-full border border-line/80 bg-paper/80 p-1.5 text-sm shadow-[0_8px_30px_rgb(27_24_20/0.08)] backdrop-blur-md"><a href="/#top" class="flex items-center gap-2 rounded-full px-3 py-1.5 font-medium"><span aria-hidden="true" class="grid size-6 place-items-center rounded-full bg-ink font-serif text-sm text-paper">A</span><span class="sr-only sm:not-sr-only">Arjun</span></a><a href="/#skills" class="hidden rounded-full px-3 py-1.5 text-muted transition-colors hover:text-ink md:inline">Skills</a><a href="/#experience" class="hidden rounded-full px-3 py-1.5 text-muted transition-colors hover:text-ink md:inline">Experience</a><a href="/#work" class="hidden rounded-full px-3 py-1.5 text-muted transition-colors hover:text-ink md:inline">Work</a><a href="/#repos" class="hidden rounded-full px-3 py-1.5 text-muted transition-colors hover:text-ink md:inline">Repos</a><a href="/#contact" class="hidden rounded-full px-3 py-1.5 text-muted transition-colors hover:text-ink md:inline">Contact</a><a target="_blank" rel="noopener noreferrer" href="/resume.pdf" class="hidden rounded-full px-3 py-1.5 text-muted md:inline transition-colors hover:text-ink">Resume</a><div class="md:hidden"><button type="button" aria-expanded="false" aria-controls="mobile-menu" class="grid size-8 place-items-center rounded-full text-ink transition-colors hover:bg-cream"><span class="sr-only">Open menu</span><svg aria-hidden="true" viewBox="0 0 24 24" class="size-5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 8h16M4 16h16"></path></svg></button><div id="mobile-menu" hidden="" class="absolute left-1/2 top-full mt-2 w-[min(calc(100vw-2rem),20rem)] -translate-x-1/2 rounded-3xl border border-line bg-paper p-2 shadow-[0_20px_40px_rgb(27_24_20/0.12)]"><ul><li><a href="/#skills" class="block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream">Skills</a></li><li><a href="/#experience" class="block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream">Experience</a></li><li><a href="/#work" class="block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream">Work</a></li><li><a href="/#repos" class="block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream">Repos</a></li><li><a href="/#contact" class="block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream">Contact</a></li><li><a target="_blank" rel="noopener noreferrer" href="/resume.pdf" class="block rounded-2xl px-4 py-3 text-base text-ink transition-colors hover:bg-cream">Resume</a></li></ul></div></div><a href="mailto:arjunsharma1620@gmail.com" class="rounded-full bg-ink px-4 py-1.5 font-medium text-paper transition-transform hover:scale-[1.03]">Connect</a></nav></header><main id="main"><article><div class="px-3 pt-3 sm:px-4 sm:pt-4"><header class="ledger-paper rounded-[28px] bg-paper px-5 pb-10 pt-28 sm:px-10 sm:pb-14 sm:pt-32"><div class="mx-auto max-w-4xl"><a data-hero-fade="true" class="inline-block text-sm text-muted transition-colors hover:text-ink active" href="/work/reductxn" data-status="active" aria-current="page"><span aria-hidden="true">← </span>Reductxn</a><p data-hero-fade="true" class="text-xs font-medium uppercase tracking-[0.2em] mt-7 text-gold-deep">Formally verified in Lean 4</p><h1 class="mt-4 font-serif text-[clamp(2.7rem,7vw,5.5rem)] leading-[0.98] tracking-tight"><span class="block "><span class="hero-word inline-block overflow-hidden pb-[0.08em] align-bottom"><span class="inline-block">Fewest<!-- --> </span></span><span class="hero-word inline-block overflow-hidden pb-[0.08em] align-bottom"><span class="inline-block">payments,<!-- --> </span></span></span><span class="block italic text-gold"><span class="hero-word inline-block overflow-hidden pb-[0.08em] align-bottom"><span class="inline-block">proved<!-- --> </span></span><span class="hero-word inline-block overflow-hidden pb-[0.08em] align-bottom"><span class="inline-block">in<!-- --> </span></span><span class="hero-word inline-block overflow-hidden pb-[0.08em] align-bottom"><span class="inline-block">Lean.<!-- --> </span></span></span></h1><p data-hero-fade="true" class="mt-6 max-w-2xl leading-relaxed text-muted sm:text-lg">For whole-number balances that sum to zero, take the n people with a non-zero balance, and let k be the most groups they can be split into so that every group sums to zero. Then n − k payments can settle everyone, and no plan does it in fewer.</p><dl data-hero-fade="true" class="mt-10 grid gap-x-6 gap-y-5 border-t border-line pt-6 sm:grid-cols-2"><div><dt class="text-sm text-muted">Prover</dt><dd class="mt-1 break-words font-mono text-sm">Lean 4.35.0</dd></div><div><dt class="text-sm text-muted">Library</dt><dd class="mt-1 break-words font-mono text-sm">Mathlib v4.35.0</dd></div><div><dt class="text-sm text-muted">Unproved steps</dt><dd class="mt-1 break-words font-mono text-sm">None</dd></div><div><dt class="text-sm text-muted">Axioms used</dt><dd class="mt-1 break-words font-mono text-sm">propext, Classical.choice, Quot.sound</dd></div></dl></div></header></div><section aria-labelledby="argument" class="mx-auto max-w-4xl px-4 py-24 sm:py-28"><div data-reveal="true"><p class="text-xs font-medium uppercase tracking-[0.2em] text-gold-deep">The argument</p><h2 id="argument" class="font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1] tracking-tight mt-4">Two halves, <em class="text-gold">one number.</em></h2></div><ol class="mt-10 border-t border-ink"><li data-reveal="true" class="grid gap-2 border-b border-line py-6 md:grid-cols-[3rem_1fr] md:gap-6"><span class="font-mono text-sm text-gold-deep">1</span><div><h3 class="font-serif text-2xl sm:text-3xl">No plan can do better</h3><p class="mt-2 leading-relaxed text-muted">Start with everyone in a group of their own. Each payment merges at most two groups, and every group stays zero-sum. So a plan of m payments leaves at least n − m zero-sum groups of the people it settles. There can be at most k of those, so m is at least n − k.</p></div></li><li data-reveal="true" class="grid gap-2 border-b border-line py-6 md:grid-cols-[3rem_1fr] md:gap-6"><span class="font-mono text-sm text-gold-deep">2</span><div><h3 class="font-serif text-2xl sm:text-3xl">n − k is reachable</h3><p class="mt-2 leading-relaxed text-muted">Take one person in a zero-sum group of s people and clear their whole balance against someone else in it. That takes at most one payment, and leaves a zero-sum group of s − 1. So a group settles in at most s − 1 payments, and all k groups together take at most n − k.</p></div></li></ol></section><section aria-labelledby="limits" class="mx-auto max-w-4xl px-4 pb-24"><div data-reveal="true" class="rounded-[28px] border border-line bg-paper p-6 sm:p-10"><h2 id="limits" class="font-serif text-3xl sm:text-4xl">What this doesn’t prove</h2><ul class="mt-5 list-disc space-y-3 pl-5 leading-relaxed text-muted"><li>It proves the mathematics the engine relies on, not that the Java code is free of bugs. The engine has its own tests against an independent brute force.</li><li>It says nothing about the greedy plan above 20 people, which the app only calls fewest when it meets a lower bound.</li><li>It doesn’t cover choosing between equally short plans by estimated cost.</li></ul></div></section><section aria-labelledby="source" class="px-3 pb-24 sm:px-4"><div class="mx-auto max-w-6xl"><h2 id="source" class="text-xs font-medium uppercase tracking-[0.2em] px-1 text-gold-deep">The proof, as Lean checked it</h2><pre tabindex="0" aria-label="Lean source" class="mt-4 max-h-[80svh] overflow-auto rounded-[20px] bg-ink p-5 font-mono text-xs leading-relaxed text-paper/90 sm:p-8 sm:text-[0.8rem]"><code><span class="text-paper/45">/-
+Fewest payments to settle a group.
+
+For integer balances `b` summing to zero, let `n` be the number of people with a non-zero balance and
+`k` the most blocks those people can be split into so that every block sums to zero. The fewest positive
+transfers that settle everyone is exactly `n - k`. See `fewest_payments` at the end of this file.
+
+The argument:
+
+* Lower bound. Start with everyone in a block of their own. Each transfer merges at most two blocks, and
+  blocks stay zero-sum under what the plan has moved so far. So a plan of `m` transfers leaves at least
+  `n - m` zero-sum blocks of the people it settles, which is at most `k`.
+* Achievability. A zero-sum block of `s` people settles in at most `s - 1` transfers: one person clears
+  their whole balance against another, and the block shrinks by one.
+-/</span>
+<span class="text-[#e2be86]">import</span> Mathlib
+
+<span class="text-[#e2be86]">open</span> Finset
+
+<span class="text-[#e2be86]">namespace</span> SettleUp
+
+<span class="text-[#e2be86]">variable</span> {V : Type*} [DecidableEq V]
+
+<span class="text-paper/45">/-- One payment of `amount` from `payer` to `payee`. -/</span>
+<span class="text-[#e2be86]">structure</span> Transfer (V : Type*) <span class="text-[#e2be86]">where</span>
+  payer : V
+  payee : V
+  amount : ℤ
+
+<span class="text-paper/45">/-- A real payment: between two different people, for a positive amount. -/</span>
+<span class="text-[#e2be86]">def</span> Transfer.Valid (t : Transfer V) : Prop := t.payer ≠ t.payee ∧ 0 &lt; t.amount
+
+<span class="text-paper/45">/-- What a transfer does to `v`&#x27;s position. -/</span>
+<span class="text-[#e2be86]">def</span> Transfer.effect (t : Transfer V) (v : V) : ℤ :=
+  (if v = t.payee then t.amount else 0) - (if v = t.payer then t.amount else 0)
+
+<span class="text-paper/45">/-- Net amount `v` receives over a plan. -/</span>
+<span class="text-[#e2be86]">def</span> received (p : List (Transfer V)) (v : V) : ℤ := (p.map <span class="text-[#e2be86]">fun</span> t =&gt; t.effect v).sum
+
+<span class="text-paper/45">/-- A plan settles `b` when everyone receives exactly what they are owed (`b v &lt; 0` means `v` owes). -/</span>
+<span class="text-[#e2be86]">def</span> Settles (p : List (Transfer V)) (b : V → ℤ) : Prop := ∀ v, received p v = b v
+
+@[<span class="text-[#e2be86]">simp</span>] <span class="text-[#e2be86]">lemma</span> received_nil (v : V) : received ([] : List (Transfer V)) v = 0 := rfl
+
+@[<span class="text-[#e2be86]">simp</span>] <span class="text-[#e2be86]">lemma</span> received_cons (t : Transfer V) (p : List (Transfer V)) (v : V) :
+    received (t :: p) v = t.effect v + received p v := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">simp</span> [received]
+
+<span class="text-[#e2be86]">lemma</span> received_append (p q : List (Transfer V)) (v : V) :
+    received (p ++ q) v = received p v + received q v := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">simp</span> [received]
+
+<span class="text-paper/45">/-- A transfer only moves money between its two ends, so a set holding both ends is unchanged. -/</span>
+<span class="text-[#e2be86]">lemma</span> sum_effect (t : Transfer V) (S : Finset V) :
+    ∑ v ∈ S, t.effect v =
+      (if t.payee ∈ S then t.amount else 0) - (if t.payer ∈ S then t.amount else 0) := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">simp</span> [Transfer.effect, sum_sub_distrib, sum_ite_eq&#x27;]
+
+<span class="text-paper/45">/-- The classes of a colouring of `S`, as a partition of `S`. -/</span>
+<span class="text-[#e2be86]">def</span> partitionOf {C : Type*} [DecidableEq C] (S : Finset V) (f : V → C) : Finpartition S <span class="text-[#e2be86]">where</span>
+  parts := (S.image f).image <span class="text-[#e2be86]">fun</span> c =&gt; S.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = c
+  supIndep := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">rw</span> [Finset.supIndep_iff_pairwiseDisjoint]
+    <span class="text-[#e2be86]">intro</span> A hA B hB hAB
+    <span class="text-[#e2be86]">simp</span> only [coe_image, Set.mem_image, mem_coe] at hA hB
+    <span class="text-[#e2be86]">obtain</span> ⟨c, -, rfl⟩ := hA
+    <span class="text-[#e2be86]">obtain</span> ⟨d, -, rfl⟩ := hB
+    <span class="text-[#e2be86]">refine</span> Finset.disjoint_left.2 <span class="text-[#e2be86]">fun</span> v hv hv&#x27; =&gt; hAB ?_
+    <span class="text-[#e2be86]">have</span> hc := (mem_filter.1 hv).2
+    <span class="text-[#e2be86]">have</span> hd := (mem_filter.1 hv&#x27;).2
+    <span class="text-[#e2be86]">rw</span> [← hc, ← hd]
+  sup_parts := <span class="text-[#e2be86]">by</span>
+    ext v
+    <span class="text-[#e2be86]">simp</span> only [mem_sup, mem_image, id, exists_exists_and_eq_and, mem_filter]
+    constructor
+    · <span class="text-[#e2be86]">rintro</span> ⟨_, _, hv, -⟩
+      <span class="text-[#e2be86]">exact</span> hv
+    · <span class="text-[#e2be86]">intro</span> hv
+      <span class="text-[#e2be86]">exact</span> ⟨v, hv, hv, rfl⟩
+  bot_notMem := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">simp</span> only [bot_eq_empty, mem_image, not_exists, not_and]
+    <span class="text-[#e2be86]">rintro</span> c ⟨v, hv, rfl⟩ h
+    <span class="text-[#e2be86]">have</span> : v ∈ S.filter <span class="text-[#e2be86]">fun</span> w =&gt; f w = f v := mem_filter.2 ⟨hv, rfl⟩
+    <span class="text-[#e2be86]">simp</span> [h] at this
+
+<span class="text-[#e2be86]">lemma</span> card_parts_partitionOf {C : Type*} [DecidableEq C] (S : Finset V) (f : V → C) :
+    (partitionOf S f).parts.card = (S.image f).card := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">refine</span> card_image_of_injOn ?_
+  <span class="text-[#e2be86]">intro</span> c hc d _ h
+  <span class="text-[#e2be86]">obtain</span> ⟨v, hv, rfl⟩ := mem_image.1 (mem_coe.1 hc)
+  <span class="text-[#e2be86]">have</span> : v ∈ S.filter <span class="text-[#e2be86]">fun</span> w =&gt; f w = d := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">have</span> hv&#x27; : v ∈ S.filter <span class="text-[#e2be86]">fun</span> w =&gt; f w = f v := mem_filter.2 ⟨hv, rfl⟩
+    <span class="text-[#e2be86]">simpa</span> [h] using hv&#x27;
+  <span class="text-[#e2be86]">exact</span> (mem_filter.1 this).2
+
+<span class="text-paper/45">/-! ### Achievability -/</span>
+
+<span class="text-paper/45">/-- A zero-sum block of `n + 1` people settles in at most `n` valid transfers, touching nobody else. -/</span>
+<span class="text-[#e2be86]">lemma</span> settle_block (n : ℕ) : ∀ (B : Finset V) (b : V → ℤ), B.card = n + 1 → ∑ v ∈ B, b v = 0 →
+    ∃ p : List (Transfer V), (∀ t ∈ p, t.Valid) ∧
+      (∀ v, received p v = if v ∈ B then b v else 0) ∧ p.length ≤ n := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">induction</span> n <span class="text-[#e2be86]">with</span>
+  | zero =&gt;
+    <span class="text-[#e2be86]">intro</span> B b hB hsum
+    <span class="text-[#e2be86]">obtain</span> ⟨a, rfl⟩ := card_eq_one.1 hB
+    <span class="text-[#e2be86]">refine</span> ⟨[], <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span>, <span class="text-[#e2be86]">fun</span> v =&gt; ?_, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span>⟩
+    <span class="text-[#e2be86]">by_cases</span> h : v = a
+    · <span class="text-[#e2be86]">subst</span> h
+      <span class="text-[#e2be86]">simpa</span> using hsum.symm
+    · <span class="text-[#e2be86]">simp</span> [h]
+  | succ n ih =&gt;
+    <span class="text-[#e2be86]">intro</span> B b hB hsum
+    <span class="text-[#e2be86]">obtain</span> ⟨a, ha, c, hc, hac⟩ := one_lt_card.1 (<span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">omega</span> : 1 &lt; B.card)
+    <span class="text-paper/45">-- `a` clears their whole balance against `c`, leaving a zero-sum block without `a`.</span>
+    <span class="text-[#e2be86]">let</span> b&#x27; : V → ℤ := <span class="text-[#e2be86]">fun</span> v =&gt; if v = c then b c + b a else b v
+    <span class="text-[#e2be86]">have</span> hc&#x27; : c ∈ B.erase a := mem_erase.2 ⟨hac.symm, hc⟩
+    <span class="text-[#e2be86]">have</span> hsum&#x27; : ∑ v ∈ B.erase a, b&#x27; v = 0 := <span class="text-[#e2be86]">by</span>
+      <span class="text-[#e2be86]">have</span> h1 : ∑ v ∈ B.erase a, b&#x27; v = ∑ v ∈ B.erase a, (b v + if v = c then b a else 0) := <span class="text-[#e2be86]">by</span>
+        <span class="text-[#e2be86]">refine</span> sum_congr rfl <span class="text-[#e2be86]">fun</span> v _ =&gt; ?_
+        <span class="text-[#e2be86]">by_cases</span> h : v = c
+        · <span class="text-[#e2be86]">simp</span> [b&#x27;, h]
+        · <span class="text-[#e2be86]">simp</span> [b&#x27;, h]
+      <span class="text-[#e2be86]">have</span> h2 := add_sum_erase B b ha
+      <span class="text-[#e2be86]">rw</span> [h1, sum_add_distrib, sum_ite_eq&#x27; , ite_eq_left hc&#x27;]
+      <span class="text-[#e2be86]">linarith</span>
+    <span class="text-[#e2be86]">obtain</span> ⟨p, hvalid, hrec, hlen⟩ := ih (B.erase a) b&#x27; (<span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">rw</span> [card_erase_of_mem ha]; <span class="text-[#e2be86]">omega</span>) hsum&#x27;
+    <span class="text-[#e2be86]">have</span> hrec&#x27; : ∀ v, v ≠ a → v ≠ c → received p v = if v ∈ B then b v else 0 := <span class="text-[#e2be86]">by</span>
+      <span class="text-[#e2be86]">intro</span> v hva hvc
+      <span class="text-[#e2be86]">rw</span> [hrec v]
+      <span class="text-[#e2be86]">simp</span> [b&#x27;, hva, hvc, mem_erase]
+    <span class="text-[#e2be86]">have</span> hrec_a : received p a = 0 := <span class="text-[#e2be86]">by</span>
+      <span class="text-[#e2be86]">rw</span> [hrec a]
+      <span class="text-[#e2be86]">simp</span>
+    <span class="text-[#e2be86]">have</span> hrec_c : received p c = b c + b a := <span class="text-[#e2be86]">by</span>
+      <span class="text-[#e2be86]">rw</span> [hrec c, ite_eq_left hc&#x27;]
+      <span class="text-[#e2be86]">simp</span> [b&#x27;]
+    <span class="text-[#e2be86]">rcases</span> lt_trichotomy (b a) 0 <span class="text-[#e2be86]">with</span> hneg | hzero | hpos
+    · <span class="text-[#e2be86]">refine</span> ⟨⟨a, c, -b a⟩ :: p, ?_, <span class="text-[#e2be86]">fun</span> v =&gt; ?_, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simpa</span> using hlen⟩
+      · <span class="text-[#e2be86]">intro</span> t ht
+        <span class="text-[#e2be86]">rcases</span> List.mem_cons.1 ht <span class="text-[#e2be86]">with</span> rfl | ht
+        · <span class="text-[#e2be86]">exact</span> ⟨hac, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simpa</span> using hneg⟩
+        · <span class="text-[#e2be86]">exact</span> hvalid t ht
+      · <span class="text-[#e2be86]">rw</span> [received_cons]
+        <span class="text-[#e2be86]">by_cases</span> hva : v = a
+        · <span class="text-[#e2be86]">subst</span> hva
+          <span class="text-[#e2be86]">simp</span> [Transfer.effect, hac, ha, hrec_a]
+        · <span class="text-[#e2be86]">by_cases</span> hvc : v = c
+          · <span class="text-[#e2be86]">subst</span> hvc
+            <span class="text-[#e2be86]">simp</span> [Transfer.effect, hva, hc, hrec_c]
+          · <span class="text-[#e2be86]">simp</span> [Transfer.effect, hva, hvc, hrec&#x27; v hva hvc]
+    · <span class="text-[#e2be86]">refine</span> ⟨p, hvalid, <span class="text-[#e2be86]">fun</span> v =&gt; ?_, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">omega</span>⟩
+      <span class="text-[#e2be86]">by_cases</span> hva : v = a
+      · <span class="text-[#e2be86]">subst</span> hva
+        <span class="text-[#e2be86]">simp</span> [ha, hrec_a, hzero]
+      · <span class="text-[#e2be86]">by_cases</span> hvc : v = c
+        · <span class="text-[#e2be86]">subst</span> hvc
+          <span class="text-[#e2be86]">simp</span> [hc, hrec_c, hzero]
+        · <span class="text-[#e2be86]">exact</span> hrec&#x27; v hva hvc
+    · <span class="text-[#e2be86]">refine</span> ⟨⟨c, a, b a⟩ :: p, ?_, <span class="text-[#e2be86]">fun</span> v =&gt; ?_, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simpa</span> using hlen⟩
+      · <span class="text-[#e2be86]">intro</span> t ht
+        <span class="text-[#e2be86]">rcases</span> List.mem_cons.1 ht <span class="text-[#e2be86]">with</span> rfl | ht
+        · <span class="text-[#e2be86]">exact</span> ⟨hac.symm, hpos⟩
+        · <span class="text-[#e2be86]">exact</span> hvalid t ht
+      · <span class="text-[#e2be86]">rw</span> [received_cons]
+        <span class="text-[#e2be86]">by_cases</span> hva : v = a
+        · <span class="text-[#e2be86]">subst</span> hva
+          <span class="text-[#e2be86]">simp</span> [Transfer.effect, hac, ha, hrec_a]
+        · <span class="text-[#e2be86]">by_cases</span> hvc : v = c
+          · <span class="text-[#e2be86]">subst</span> hvc
+            <span class="text-[#e2be86]">simp</span> [Transfer.effect, hva, hc, hrec_c]
+          · <span class="text-[#e2be86]">simp</span> [Transfer.effect, hva, hvc, hrec&#x27; v hva hvc]
+
+<span class="text-[#e2be86]">variable</span> [Fintype V]
+
+<span class="text-paper/45">/-- People with a non-zero balance. -/</span>
+<span class="text-[#e2be86]">def</span> support (b : V → ℤ) : Finset V := univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; b v ≠ 0
+
+<span class="text-paper/45">/-- Every block of the partition sums to zero. -/</span>
+<span class="text-[#e2be86]">def</span> ZeroSum (b : V → ℤ) (P : Finpartition (support b)) : Prop := ∀ B ∈ P.parts, ∑ v ∈ B, b v = 0
+
+<span class="text-paper/45">/-- `k`: the most zero-sum blocks the non-zero members can be split into. -/</span>
+<span class="text-[#e2be86]">noncomputable</span> <span class="text-[#e2be86]">def</span> maxBlocks (b : V → ℤ) : ℕ :=
+  sSup {c | ∃ P : Finpartition (support b), ZeroSum b P ∧ P.parts.card = c}
+
+<span class="text-[#e2be86]">omit</span> [DecidableEq V] <span class="text-[#e2be86]">in</span>
+<span class="text-[#e2be86]">lemma</span> not_mem_support {b : V → ℤ} {v : V} (h : v ∉ support b) : b v = 0 := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">simpa</span> [support] using h
+
+<span class="text-paper/45">/-- Any partition into zero-sum blocks can be paid off with `n - (number of blocks)` valid transfers. -/</span>
+<span class="text-[#e2be86]">theorem</span> achievable (b : V → ℤ) (P : Finpartition (support b)) (hP : ZeroSum b P) :
+    ∃ p : List (Transfer V), (∀ t ∈ p, t.Valid) ∧ Settles p b ∧
+      p.length + P.parts.card ≤ (support b).card := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">have</span> key : ∀ T : Finset (Finset V), T ⊆ P.parts →
+      ∃ p : List (Transfer V), (∀ t ∈ p, t.Valid) ∧
+        (∀ v, received p v = ∑ B ∈ T, if v ∈ B then b v else 0) ∧
+        p.length + T.card ≤ ∑ B ∈ T, B.card := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">intro</span> T
+    <span class="text-[#e2be86]">induction</span> T using Finset.induction_on <span class="text-[#e2be86]">with</span>
+    | empty =&gt; <span class="text-[#e2be86]">exact</span> <span class="text-[#e2be86]">fun</span> _ =&gt; ⟨[], <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span>, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span>, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span>⟩
+    | insert B T hB ih =&gt;
+      <span class="text-[#e2be86]">intro</span> hT
+      <span class="text-[#e2be86]">have</span> hBP : B ∈ P.parts := hT (mem_insert_self _ _)
+      <span class="text-[#e2be86]">obtain</span> ⟨q, hq, hqr, hql⟩ := ih <span class="text-[#e2be86]">fun</span> x hx =&gt; hT (mem_insert_of_mem hx)
+      <span class="text-[#e2be86]">have</span> hne : 0 &lt; B.card := card_pos.2 (P.nonempty_of_mem_parts hBP)
+      <span class="text-[#e2be86]">obtain</span> ⟨p, hp, hpr, hpl⟩ :=
+        settle_block (B.card - 1) B b (<span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">omega</span>) (hP B hBP)
+      <span class="text-[#e2be86]">refine</span> ⟨p ++ q, ?_, <span class="text-[#e2be86]">fun</span> v =&gt; ?_, ?_⟩
+      · <span class="text-[#e2be86]">intro</span> t ht
+        <span class="text-[#e2be86]">rcases</span> List.mem_append.1 ht <span class="text-[#e2be86]">with</span> ht | ht
+        · <span class="text-[#e2be86]">exact</span> hp t ht
+        · <span class="text-[#e2be86]">exact</span> hq t ht
+      · <span class="text-[#e2be86]">rw</span> [received_append, hpr, hqr, sum_insert hB]
+      · <span class="text-[#e2be86]">rw</span> [List.length_append, card_insert_of_notMem hB, sum_insert hB]
+        <span class="text-[#e2be86]">omega</span>
+  <span class="text-[#e2be86]">obtain</span> ⟨p, hp, hrec, hlen⟩ := key P.parts subset_rfl
+  <span class="text-[#e2be86]">refine</span> ⟨p, hp, <span class="text-[#e2be86]">fun</span> v =&gt; ?_, ?_⟩
+  · <span class="text-[#e2be86]">rw</span> [hrec]
+    <span class="text-[#e2be86]">by_cases</span> hv : v ∈ support b
+    · <span class="text-[#e2be86]">obtain</span> ⟨B, hB, hvB⟩ := P.exists_mem hv
+      <span class="text-[#e2be86]">rw</span> [sum_eq_single B, ite_eq_left hvB]
+      · <span class="text-[#e2be86]">intro</span> C hC hCB
+        <span class="text-[#e2be86]">rw</span> [ite_eq_right]
+        <span class="text-[#e2be86]">intro</span> hvC
+        <span class="text-[#e2be86]">exact</span> hCB (P.eq_of_mem_parts hC hB hvC hvB)
+      · <span class="text-[#e2be86]">exact</span> <span class="text-[#e2be86]">fun</span> h =&gt; absurd hB h
+    · <span class="text-[#e2be86]">rw</span> [not_mem_support hv]
+      <span class="text-[#e2be86]">simp</span>
+  · <span class="text-[#e2be86]">rwa</span> [P.sum_card_parts] at hlen
+
+<span class="text-paper/45">/-! ### Lower bound -/</span>
+
+<span class="text-paper/45">/-- Any plan leaves a colouring of everybody into zero-sum classes, made by at most `length` merges of
+singletons. Each transfer merges the payee&#x27;s class into the payer&#x27;s. -/</span>
+<span class="text-[#e2be86]">lemma</span> exists_colouring (p : List (Transfer V)) :
+    ∃ f : V → V, (∀ c, ∑ v ∈ univ.filter (<span class="text-[#e2be86]">fun</span> v =&gt; f v = c), received p v = 0) ∧
+      Fintype.card V ≤ (univ.image f).card + p.length := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">induction</span> p <span class="text-[#e2be86]">with</span>
+  | nil =&gt;
+    <span class="text-[#e2be86]">refine</span> ⟨id, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span>, ?_⟩
+    <span class="text-[#e2be86]">simp</span> [Finset.card_univ]
+  | cons t p ih =&gt;
+    <span class="text-[#e2be86]">obtain</span> ⟨f, hf, hcard⟩ := ih
+    <span class="text-[#e2be86]">let</span> g : V → V := <span class="text-[#e2be86]">fun</span> v =&gt; if f v = f t.payee then f t.payer else f v
+    <span class="text-[#e2be86]">refine</span> ⟨g, <span class="text-[#e2be86]">fun</span> c =&gt; ?_, ?_⟩
+    · <span class="text-[#e2be86]">simp</span> only [received_cons, sum_add_distrib, sum_effect]
+      <span class="text-[#e2be86]">by_cases</span> hca : c = f t.payer
+      · <span class="text-[#e2be86]">subst</span> hca
+        <span class="text-[#e2be86]">have</span> h1 : t.payer ∈ univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; g v = f t.payer := <span class="text-[#e2be86]">by</span>
+          <span class="text-[#e2be86]">simp</span> only [mem_filter, mem_univ, true_and, g]
+          split_ifs &lt;;&gt; rfl
+        <span class="text-[#e2be86]">have</span> h2 : t.payee ∈ univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; g v = f t.payer := <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span> [g]
+        <span class="text-[#e2be86]">rw</span> [ite_eq_left h1, ite_eq_left h2, sub_self, zero_add]
+        <span class="text-[#e2be86]">by_cases</span> had : f t.payer = f t.payee
+        · <span class="text-[#e2be86]">have</span> : (univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; g v = f t.payer) = univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = f t.payer := <span class="text-[#e2be86]">by</span>
+            ext v
+            <span class="text-[#e2be86]">simp</span> only [mem_filter, mem_univ, true_and, g]
+            split_ifs <span class="text-[#e2be86]">with</span> h
+            · <span class="text-[#e2be86]">simp</span> [h, had]
+            · rfl
+          <span class="text-[#e2be86]">rw</span> [this]
+          <span class="text-[#e2be86]">exact</span> hf _
+        · <span class="text-[#e2be86]">have</span> : (univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; g v = f t.payer) =
+              (univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = f t.payer) ∪ univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = f t.payee := <span class="text-[#e2be86]">by</span>
+            ext v
+            <span class="text-[#e2be86]">simp</span> only [mem_filter, mem_univ, true_and, mem_union, g]
+            split_ifs <span class="text-[#e2be86]">with</span> h &lt;;&gt; <span class="text-[#e2be86]">simp</span> [h]
+          <span class="text-[#e2be86]">rw</span> [this, sum_union, hf, hf, add_zero]
+          <span class="text-[#e2be86]">refine</span> Finset.disjoint_left.2 <span class="text-[#e2be86]">fun</span> v hv hv&#x27; =&gt; had ?_
+          <span class="text-[#e2be86]">rw</span> [← (mem_filter.1 hv).2, (mem_filter.1 hv&#x27;).2]
+      · <span class="text-[#e2be86]">by_cases</span> hcd : c = f t.payee
+        · <span class="text-[#e2be86]">have</span> : (univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; g v = c) = ∅ := <span class="text-[#e2be86]">by</span>
+            ext v
+            <span class="text-[#e2be86]">simp</span> only [mem_filter, mem_univ, true_and, notMem_empty, iff_false, g]
+            split_ifs <span class="text-[#e2be86]">with</span> h
+            · <span class="text-[#e2be86]">exact</span> <span class="text-[#e2be86]">fun</span> h&#x27; =&gt; hca h&#x27;.symm
+            · <span class="text-[#e2be86]">exact</span> <span class="text-[#e2be86]">fun</span> h&#x27; =&gt; h (h&#x27;.trans hcd)
+          <span class="text-[#e2be86]">simp</span> [this]
+        · <span class="text-[#e2be86]">have</span> : (univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; g v = c) = univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = c := <span class="text-[#e2be86]">by</span>
+            ext v
+            <span class="text-[#e2be86]">simp</span> only [mem_filter, mem_univ, true_and, g]
+            split_ifs <span class="text-[#e2be86]">with</span> h
+            · constructor
+              · <span class="text-[#e2be86]">exact</span> <span class="text-[#e2be86]">fun</span> h&#x27; =&gt; absurd h&#x27;.symm hca
+              · <span class="text-[#e2be86]">exact</span> <span class="text-[#e2be86]">fun</span> h&#x27; =&gt; absurd (h&#x27;.symm.trans h) hcd
+            · rfl
+          <span class="text-[#e2be86]">rw</span> [this, hf, add_zero]
+          <span class="text-[#e2be86]">have</span> h1 : t.payer ∉ univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = c := <span class="text-[#e2be86]">by</span>
+            <span class="text-[#e2be86]">simpa</span> using <span class="text-[#e2be86]">fun</span> h&#x27; : f t.payer = c =&gt; hca h&#x27;.symm
+          <span class="text-[#e2be86]">have</span> h2 : t.payee ∉ univ.filter <span class="text-[#e2be86]">fun</span> v =&gt; f v = c := <span class="text-[#e2be86]">by</span>
+            <span class="text-[#e2be86]">simpa</span> using <span class="text-[#e2be86]">fun</span> h&#x27; : f t.payee = c =&gt; hcd h&#x27;.symm
+          <span class="text-[#e2be86]">simp</span> [h1, h2]
+    · <span class="text-[#e2be86]">have</span> : (univ.image f).card ≤ (univ.image g).card + 1 := <span class="text-[#e2be86]">by</span>
+        <span class="text-[#e2be86]">have</span> hsub : univ.image f ⊆ insert (f t.payee) (univ.image g) := <span class="text-[#e2be86]">by</span>
+          <span class="text-[#e2be86]">intro</span> c hc
+          <span class="text-[#e2be86]">obtain</span> ⟨v, -, rfl⟩ := mem_image.1 hc
+          <span class="text-[#e2be86]">by_cases</span> h : f v = f t.payee
+          · <span class="text-[#e2be86]">simp</span> [h]
+          · <span class="text-[#e2be86]">exact</span> mem_insert_of_mem (mem_image.2 ⟨v, mem_univ _, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simp</span> [g, h]⟩)
+        <span class="text-[#e2be86]">exact</span> (card_le_card hsub).trans (card_insert_le _ _)
+      <span class="text-[#e2be86]">simp</span> only [List.length_cons]
+      <span class="text-[#e2be86]">omega</span>
+
+<span class="text-[#e2be86]">lemma</span> bddAbove_blocks (b : V → ℤ) :
+    BddAbove {c | ∃ P : Finpartition (support b), ZeroSum b P ∧ P.parts.card = c} := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">refine</span> ⟨(support b).card, ?_⟩
+  <span class="text-[#e2be86]">rintro</span> c ⟨P, -, rfl⟩
+  <span class="text-[#e2be86]">exact</span> P.card_parts_le_card
+
+<span class="text-paper/45">/-- Any plan that settles `b` uses at least `n - k` transfers. -/</span>
+<span class="text-[#e2be86]">theorem</span> lower_bound (b : V → ℤ) (p : List (Transfer V)) (hp : Settles p b) :
+    (support b).card - maxBlocks b ≤ p.length := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">obtain</span> ⟨f, hf, hcard⟩ := exists_colouring p
+  set S := support b <span class="text-[#e2be86]">with</span> hS
+  <span class="text-[#e2be86]">have</span> hzero : ZeroSum b (partitionOf S f) := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">intro</span> B hB
+    <span class="text-[#e2be86]">obtain</span> ⟨c, -, rfl⟩ := mem_image.1 hB
+    <span class="text-[#e2be86]">have</span> h := hf c
+    <span class="text-[#e2be86]">simp</span> only [hp _] at h
+    <span class="text-[#e2be86]">rw</span> [← h]
+    <span class="text-[#e2be86]">refine</span> sum_subset (<span class="text-[#e2be86]">fun</span> v hv =&gt; ?_) <span class="text-[#e2be86]">fun</span> v hv hv&#x27; =&gt; ?_
+    · <span class="text-[#e2be86]">simpa</span> using (mem_filter.1 hv).2
+    · <span class="text-[#e2be86]">have</span> hfv : f v = c := <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">simpa</span> using hv
+      <span class="text-[#e2be86]">have</span> : v ∉ S := <span class="text-[#e2be86]">fun</span> hvS =&gt; hv&#x27; (mem_filter.2 ⟨hvS, hfv⟩)
+      <span class="text-[#e2be86]">exact</span> not_mem_support this
+  <span class="text-[#e2be86]">have</span> hle : (S.image f).card ≤ maxBlocks b := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">rw</span> [← card_parts_partitionOf]
+    <span class="text-[#e2be86]">exact</span> le_csSup (bddAbove_blocks b) ⟨_, hzero, rfl⟩
+  <span class="text-[#e2be86]">have</span> hsplit : (univ.image f).card ≤ (S.image f).card + (Sᶜ).card := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">have</span> : (univ : Finset V).image f ⊆ S.image f ∪ (Sᶜ).image f := <span class="text-[#e2be86]">by</span>
+      <span class="text-[#e2be86]">rw</span> [← image_union, union_compl]
+    <span class="text-[#e2be86]">exact</span> (card_le_card this).trans
+      ((card_union_le _ _).trans (Nat.add_le_add_left card_image_le _))
+  <span class="text-[#e2be86]">have</span> hcompl := card_compl S
+  <span class="text-[#e2be86]">have</span> hS&#x27; := card_le_univ S
+  <span class="text-[#e2be86]">omega</span>
+
+<span class="text-paper/45">/-- **Main theorem.** For balances summing to zero, the fewest valid transfers that settle everyone is
+exactly `n - k`: `n` people with a non-zero balance, `k` the most zero-sum blocks they split into. -/</span>
+<span class="text-[#e2be86]">theorem</span> fewest_payments (b : V → ℤ) (hb : ∑ v, b v = 0) :
+    IsLeast {m | ∃ p : List (Transfer V), (∀ t ∈ p, t.Valid) ∧ Settles p b ∧ p.length = m}
+      ((support b).card - maxBlocks b) := <span class="text-[#e2be86]">by</span>
+  <span class="text-[#e2be86]">have</span> hne : {c | ∃ P : Finpartition (support b), ZeroSum b P ∧ P.parts.card = c}.Nonempty := <span class="text-[#e2be86]">by</span>
+    <span class="text-[#e2be86]">refine</span> ⟨_, partitionOf (support b) (<span class="text-[#e2be86]">fun</span> _ =&gt; ()), ?_, rfl⟩
+    <span class="text-[#e2be86]">intro</span> B hB
+    <span class="text-[#e2be86]">obtain</span> ⟨c, -, rfl⟩ := mem_image.1 hB
+    <span class="text-[#e2be86]">rw</span> [filter_true_of_mem (<span class="text-[#e2be86]">fun</span> _ _ =&gt; rfl), ← hb]
+    <span class="text-[#e2be86]">exact</span> sum_subset (subset_univ _) <span class="text-[#e2be86]">fun</span> v _ hv =&gt; not_mem_support hv
+  <span class="text-[#e2be86]">obtain</span> ⟨P, hP, hcard⟩ := Nat.sSup_mem hne (bddAbove_blocks b)
+  <span class="text-[#e2be86]">obtain</span> ⟨p, hvalid, hsettle, hlen⟩ := achievable b P hP
+  <span class="text-[#e2be86]">have</span> hk : P.parts.card = maxBlocks b := hcard
+  <span class="text-[#e2be86]">have</span> hlow := lower_bound b p hsettle
+  <span class="text-[#e2be86]">refine</span> ⟨⟨p, hvalid, hsettle, <span class="text-[#e2be86]">by</span> <span class="text-[#e2be86]">omega</span>⟩, ?_⟩
+  <span class="text-[#e2be86]">rintro</span> m ⟨q, -, hq, rfl⟩
+  <span class="text-[#e2be86]">exact</span> lower_bound b q hq
+
+<span class="text-[#e2be86]">end</span> SettleUp
+</code></pre></div></section></article><section id="contact"><div class="relative overflow-hidden rounded-t-[28px] bg-ink  px-5 pt-10 pb-5 text-paper sm:px-6 sm:pt-20 sm:pb-6"><div aria-hidden="true" class="contact-glow pointer-events-none absolute left-1/2 top-1/2 size-[36rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-[conic-gradient(from_0deg,rgb(162_122_69/0.35),transparent_30%,rgb(162_122_69/0.2)_60%,transparent)] blur-3xl"></div><div class="relative mx-auto grid max-w-5xl items-start gap-8 text-left md:gap-12 md:grid-cols-[1fr_1.15fr]"><div><img data-reveal="true" src="/arjun-240.webp" srcSet="/arjun-240.webp 240w, /arjun-480.webp 480w" sizes="9rem" width="240" height="240" loading="lazy" decoding="async" alt="Portrait of Arjun Sharma" class="mb-8 size-32 rounded-full sm:size-36 object-cover ring-2 ring-gold/40 ring-offset-4 ring-offset-ink"/><p data-reveal="true" class="text-xs font-medium uppercase tracking-[0.2em] text-gold">Contact</p><h2 data-reveal="true" class="mt-4 font-serif text-[clamp(2.2rem,5vw,4rem)] leading-[1] tracking-tight">Let&#x27;s build something <em class="text-gold">worth using.</em></h2><p data-reveal="true" class="mt-5 max-w-sm leading-relaxed text-paper/65">Write your message here and it opens in your email app, ready to send. I reply to everything.</p><div data-reveal="true" class="mt-6 flex flex-col items-start gap-3 text-sm"><a href="mailto:arjunsharma1620@gmail.com" class="text-paper underline decoration-gold underline-offset-4 hover:text-gold">arjunsharma1620@gmail.com</a><div class="flex gap-6 text-paper/70"><a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/arjunsharma16/" class="hover:text-paper">LinkedIn</a><a target="_blank" rel="noopener noreferrer" href="https://github.com/Arjun-Sharma-git" class="hover:text-paper">GitHub</a><a target="_blank" rel="noopener noreferrer" href="/resume.pdf" class="hover:text-paper">Resume</a></div></div></div><div data-reveal="true"><form class="grid gap-4 text-left" aria-label="Message me"><div class="grid gap-4 sm:grid-cols-2"><label class="grid gap-2 text-sm text-paper/70">Name<input required="" autoComplete="name" maxLength="100" class="w-full rounded-2xl border border-paper/15 bg-paper/5 px-4 py-3 text-paper placeholder:text-paper/35 outline-none transition-colors focus:border-gold focus:bg-paper/10" placeholder="Your name" name="name"/></label><label class="grid gap-2 text-sm text-paper/70">Email<input type="email" required="" autoComplete="email" maxLength="200" class="w-full rounded-2xl border border-paper/15 bg-paper/5 px-4 py-3 text-paper placeholder:text-paper/35 outline-none transition-colors focus:border-gold focus:bg-paper/10" placeholder="you@example.com" name="email"/></label></div><label class="grid gap-2 text-sm text-paper/70">Message<textarea name="message" required="" rows="5" maxLength="1500" class="w-full rounded-2xl border border-paper/15 bg-paper/5 px-4 py-3 text-paper placeholder:text-paper/35 outline-none transition-colors focus:border-gold focus:bg-paper/10 resize-y" placeholder="What are you working on?"></textarea></label><div class="flex flex-wrap items-center gap-4"><button type="submit" class="rounded-full bg-paper px-6 py-3 text-sm font-medium text-ink transition-transform hover:scale-[1.03] sm:text-base">Send</button><p aria-live="polite" class="text-sm text-paper/60"></p></div></form></div></div><footer class="relative mt-8 flex flex-col items-center justify-between gap-2 border-t border-paper/10 pt-4 text-xs sm:mt-12 text-paper/50 sm:flex-row"><span>© <!-- -->2026<!-- --> <!-- -->Arjun Sharma</span><span>Developer · Solver · Optimiser</span></footer></div></section></main><script>(function(a,f){let l;try{l=JSON.parse(sessionStorage.getItem(a)||"{}")}catch{return}const n=l?.[f||history.state?.__TSR_key];let c=!1;for(const t in n){const e=n[t],o=e?.scrollX,s=e?.scrollY;if(Number.isFinite(o)&&Number.isFinite(s)){if(t==="window")scrollTo(o,s),c=!0;else if(t)try{const r=document.querySelector(t);r&&(r.scrollLeft=o,r.scrollTop=s)}catch{}}}if(c)return;const i=location.hash.slice(1);if(i){const t=history.state?.__hashScrollIntoViewOptions??!0;if(t){const e=document.getElementById(i);e&&e.scrollIntoView(t)}return}scrollTo(0,0)})("tsr-scroll-restoration-v1_3");document.currentScript.remove()</script><!--/$--><script data-tsr-stream-part="">(self.$R=self.$R||{})["tsr"]=[];self.$_TSR={h(){this.hydrated=!0,this.c()},e(){this.streamEnded=!0,this.c()},c(){this.hydrated&&this.streamEnded&&(delete self.$_TSR,delete self.$R.tsr)},p(e){this.initialized?e():this.buffer.push(e)},buffer:[]};$_TSR.router=($R=>$R[0]={manifest:$R[1]={routes:$R[2]={__root__:$R[3]={preloads:$R[4]=["/assets/index-Q7iwZyp2.js","/assets/rolldown-runtime-XKyaHtl9.js","/assets/layout-C-kgaK_J.js","/assets/skills-ufEPUF16.js"],scripts:$R[5]=[$R[6]={attrs:$R[7]={type:"module",async:!0,src:"/assets/index-Q7iwZyp2.js"}}]},"/work/reductxn_/proof":$R[8]={preloads:$R[9]=["/assets/work.reductxn_.proof-C9sAT9Nn.js","/assets/Contact-Lh_AhowL.js","/assets/shared-CRcSwHHj.js"]}}},matches:$R[10]=[$R[11]={i:"__root__#",u:1794104972619,s:"success",ssr:!0},$R[12]={i:"#work#reductxn_#proof#work#reductxn#proof",u:1794104972619,s:"success",ssr:!0}],dehydratedData:$R[13]={query:$R[14]={stream:$R[15]=($R[16]=(stream) => new ReadableStream({ start(controller) {
+	stream.on({
+		next(value) {
+			try {
+				controller.enqueue(value);
+			} catch (_error) {}
+		},
+		throw(value) {
+			controller.error(value);
+		},
+		return() {
+			try {
+				controller.close();
+			} catch (_error) {}
+		}
+	});
+} }))($R[17]=($R[18]=(live) => {
+	const buffer = [];
+	const listeners = [];
+	let alive = true;
+	let success = false;
+	let count = 0;
+	const internal = {
+		flush(value, mode, x) {
+			live > 1 || buffer.push(value);
+			for (x = 0; x < count; x++) {
+				const listener = listeners[x];
+				if (listener) listener[mode](value);
+			}
+		},
+		up(listener, x, z, current) {
+			for (x = 0, z = buffer.length; x < z; x++) {
+				current = buffer[x];
+				if (!alive && x === z - 1) listener[success ? "return" : "throw"](current);
+				else listener.next(current);
+			}
+		},
+		on(listener, temp = 0) {
+			if (live > 1) throw new Error("Stream consumed");
+			let subscribed = alive;
+			if (alive) {
+				for (temp = 0; temp < count; temp++) if (!listeners[temp]) break;
+				if (temp === count) count++;
+				listeners[temp] = listener;
+			}
+			internal.up(listener);
+			if (live) {
+				live = 2;
+				buffer.length = 0;
+			}
+			return () => {
+				if (alive && subscribed) {
+					subscribed = false;
+					listeners[temp] = void 0;
+					while (count > 0 && !listeners[count - 1]) count--;
+					listeners.length = count;
+				}
+			};
+		}
+	};
+	return {
+		__SEROVAL_STREAM__: true,
+		on(listener) {
+			return internal.on(listener);
+		},
+		next(value) {
+			if (alive) internal.flush(value, "next");
+		},
+		throw(value) {
+			if (alive) {
+				internal.flush(value, "throw");
+				alive = false;
+				success = false;
+				listeners.length = 0;
+			}
+		},
+		return(value) {
+			if (alive) {
+				internal.flush(value, "return");
+				alive = false;
+				success = true;
+				listeners.length = 0;
+			}
+		}
+	};
+})(1))}}})($R["tsr"]);{let s=document.currentScript,p;while((p=s.previousElementSibling)&&p.hasAttribute('data-tsr-stream-part'))p.remove();s.remove()}</script><script type="module" async="" src="/assets/index-Q7iwZyp2.js"></script><script>document.currentScript.remove();/*$tsr-stream-boundary*/</script><script>($R=>$R[17].return(void 0))($R["tsr"]);$_TSR.e();document.currentScript.remove()</script></body></html>
