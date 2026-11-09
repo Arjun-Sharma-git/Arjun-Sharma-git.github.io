@@ -29,6 +29,13 @@
       }
     },
     {
+      "path": "/work/sentinel-vault",
+      "sitemap": {
+        "priority": 0.8,
+        "changefreq": "monthly"
+      }
+    },
+    {
       "path": "/404",
       "sitemap": {
         "exclude": true
@@ -36,5 +43,5 @@
     }
   ],
   "host": "https://arjun-sharma-git.github.io",
-  "lastBuilt": "2026-11-08T02:29:33.130Z"
+  "lastBuilt": "2026-11-09T15:12:16.212Z"
 }

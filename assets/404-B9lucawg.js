@@ -1,0 +1,1 @@
+import{r as e}from"./layout-Cv80CAx6.js";var t=e;export{t as component};
