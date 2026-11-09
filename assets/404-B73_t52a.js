@@ -1,0 +1,1 @@
+import{i as e}from"./layout-CGsM5Z33.js";var t=e;export{t as component};
