@@ -2,7 +2,7 @@ import { Suspense, type ReactNode } from 'react'
 import type { QueryClient } from '@tanstack/react-query'
 import { HeadContent, Scripts, createRootRouteWithContext } from '@tanstack/react-router'
 import { profile } from '~/content'
-import { Analytics, Backdrop, NotFound } from '~/components/layout'
+import { Analytics, Backdrop, CleanHash, NotFound } from '~/components/layout'
 import { GOATCOUNTER_ENDPOINT } from '~/lib/analytics'
 import { buildSeo } from '~/lib/seo'
 import css from '~/styles/global.css?url'
@@ -50,6 +50,7 @@ function RootDocument({ children }: { children: ReactNode }) {
       <body>
         <Backdrop />
         <Analytics />
+        <CleanHash />
         {children}
         <Scripts />
       </body>
