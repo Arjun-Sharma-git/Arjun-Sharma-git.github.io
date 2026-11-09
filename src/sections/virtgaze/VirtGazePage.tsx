@@ -3,7 +3,7 @@ import type { Project } from '~/content'
 import { Chip, ExternalLink } from '~/components/ui'
 import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
-import { BackLink, HeroLine, NextProject, eyebrow, heading, useIntro } from '../case-study/shared'
+import { BackLink, Contribute, HeroLine, NextProject, eyebrow, heading, useIntro } from '../case-study/shared'
 import { FilterDemo } from './FilterDemo'
 import { GazePipeline } from './GazePipeline'
 import { IrisCanvas } from './IrisHero'
@@ -149,6 +149,7 @@ export function VirtGazePage({ project }: { project: Project }) {
       <FilterDemo project={project} />
       <Decisions project={project} />
       <Stack project={project} />
+      <Contribute project={project} dark />
       <NextProject current={project} dark />
     </article>
   )

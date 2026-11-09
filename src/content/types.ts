@@ -61,7 +61,7 @@ export type Project = {
   /** Position in the Work section, lowest first. */
   order: number
   /** URL of the case study page: /work/<slug>. Each slug has its own route and page layout. */
-  slug: 'virtgaze' | 'reductxn'
+  slug: 'virtgaze' | 'reductxn' | 'sentinel-vault'
   name: string
   kind: string
   description: string

@@ -78,6 +78,41 @@ function CondenseMotif() {
   )
 }
 
+/** Six folders, three of them readable: the search only ever lights the ones you may open. */
+function VaultMotif() {
+  const ref = useRef<SVGSVGElement>(null)
+  useGSAP(
+    () => {
+      gsap.matchMedia().add(MOTION_OK, () => {
+        gsap
+          .timeline({ repeat: -1, repeatDelay: 1.4, scrollTrigger: { trigger: ref.current, toggleActions: 'play pause resume pause' } })
+          .fromTo('.motif-scan', { x: -6 }, { x: 72, duration: 1.6, ease: 'none' })
+          .fromTo('.motif-open', { fill: '#fbf8f2' }, { fill: '#a27a45', duration: 0.3, stagger: 0.45 }, 0.1)
+      })
+    },
+    { scope: ref },
+  )
+  const cells = [0, 1, 2].flatMap((col) => [0, 1].map((row) => ({ col, row, open: (col + row) % 2 === 0 })))
+  return (
+    <svg ref={ref} viewBox="0 0 80 44" aria-hidden className="w-20 shrink-0">
+      {cells.map(({ col, row, open }) => (
+        <path
+          key={`${col}${row}`}
+          className={open ? 'motif-open' : undefined}
+          d={`M${6 + col * 24} ${8 + row * 18}h7l2 2.5h9v11h-18z`}
+          fill={open ? '#a27a45' : 'none'}
+          stroke={open ? '#a27a45' : '#c9bda8'}
+          strokeWidth={1.2}
+          strokeLinejoin="round"
+        />
+      ))}
+      <rect className="motif-scan" x={0} y={4} width={1.6} height={38} rx={0.8} fill="#1b1814" opacity={0.55} />
+    </svg>
+  )
+}
+
 export function CardMotif({ slug }: { slug: Project['slug'] }) {
-  return slug === 'virtgaze' ? <IrisMotif /> : <CondenseMotif />
+  if (slug === 'virtgaze') return <IrisMotif />
+  if (slug === 'sentinel-vault') return <VaultMotif />
+  return <CondenseMotif />
 }

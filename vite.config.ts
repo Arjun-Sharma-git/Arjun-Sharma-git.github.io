@@ -24,6 +24,7 @@ export default defineConfig({
         { path: '/work/virtgaze', sitemap: { priority: 0.8, changefreq: 'monthly' } },
         { path: '/work/reductxn', sitemap: { priority: 0.8, changefreq: 'monthly' } },
         { path: '/work/reductxn/proof', sitemap: { priority: 0.6, changefreq: 'yearly' } },
+        { path: '/work/sentinel-vault', sitemap: { priority: 0.8, changefreq: 'monthly' } },
         { path: '/404', prerender: { enabled: true, outputPath: '/404.html' }, sitemap: { exclude: true } },
       ],
     }),

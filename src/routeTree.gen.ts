@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as R404RouteImport } from './routes/404'
 import { Route as WorkReductxnRouteImport } from './routes/work.reductxn'
+import { Route as WorkSentinelVaultRouteImport } from './routes/work.sentinel-vault'
 import { Route as WorkVirtgazeRouteImport } from './routes/work.virtgaze'
 import { Route as WorkReductxnProofRouteImport } from './routes/work.reductxn_.proof'
 
@@ -30,6 +31,11 @@ const WorkReductxnRoute = WorkReductxnRouteImport.update({
   path: '/work/reductxn',
   getParentRoute: () => rootRouteImport,
 } as any)
+const WorkSentinelVaultRoute = WorkSentinelVaultRouteImport.update({
+  id: '/work/sentinel-vault',
+  path: '/work/sentinel-vault',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const WorkVirtgazeRoute = WorkVirtgazeRouteImport.update({
   id: '/work/virtgaze',
   path: '/work/virtgaze',
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/work/reductxn': typeof WorkReductxnRoute
+  '/work/sentinel-vault': typeof WorkSentinelVaultRoute
   '/work/virtgaze': typeof WorkVirtgazeRoute
   '/work/reductxn/proof': typeof WorkReductxnProofRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/work/reductxn': typeof WorkReductxnRoute
+  '/work/sentinel-vault': typeof WorkSentinelVaultRoute
   '/work/virtgaze': typeof WorkVirtgazeRoute
   '/work/reductxn/proof': typeof WorkReductxnProofRoute
 }
@@ -60,21 +68,33 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/404': typeof R404Route
   '/work/reductxn': typeof WorkReductxnRoute
+  '/work/sentinel-vault': typeof WorkSentinelVaultRoute
   '/work/virtgaze': typeof WorkVirtgazeRoute
   '/work/reductxn_/proof': typeof WorkReductxnProofRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
-    '/' | '/404' | '/work/reductxn' | '/work/virtgaze' | '/work/reductxn/proof'
+    | '/'
+    | '/404'
+    | '/work/reductxn'
+    | '/work/sentinel-vault'
+    | '/work/virtgaze'
+    | '/work/reductxn/proof'
   fileRoutesByTo: FileRoutesByTo
   to:
-    '/' | '/404' | '/work/reductxn' | '/work/virtgaze' | '/work/reductxn/proof'
+    | '/'
+    | '/404'
+    | '/work/reductxn'
+    | '/work/sentinel-vault'
+    | '/work/virtgaze'
+    | '/work/reductxn/proof'
   id:
     | '__root__'
     | '/'
     | '/404'
     | '/work/reductxn'
+    | '/work/sentinel-vault'
     | '/work/virtgaze'
     | '/work/reductxn_/proof'
   fileRoutesById: FileRoutesById
@@ -83,6 +103,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   R404Route: typeof R404Route
   WorkReductxnRoute: typeof WorkReductxnRoute
+  WorkSentinelVaultRoute: typeof WorkSentinelVaultRoute
   WorkVirtgazeRoute: typeof WorkVirtgazeRoute
   WorkReductxnProofRoute: typeof WorkReductxnProofRoute
 }
@@ -110,6 +131,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof WorkReductxnRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/work/sentinel-vault': {
+      id: '/work/sentinel-vault'
+      path: '/work/sentinel-vault'
+      fullPath: '/work/sentinel-vault'
+      preLoaderRoute: typeof WorkSentinelVaultRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/work/virtgaze': {
       id: '/work/virtgaze'
       path: '/work/virtgaze'
@@ -131,6 +159,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   R404Route: R404Route,
   WorkReductxnRoute: WorkReductxnRoute,
+  WorkSentinelVaultRoute: WorkSentinelVaultRoute,
   WorkVirtgazeRoute: WorkVirtgazeRoute,
   WorkReductxnProofRoute: WorkReductxnProofRoute,
 }

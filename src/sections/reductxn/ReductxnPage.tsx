@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import type { Project } from '~/content'
 import { Chip, ExternalLink } from '~/components/ui'
 import { useScrollReveal } from '~/hooks/useScrollReveal'
-import { BackLink, HeroLine, NextProject, eyebrow, heading, useIntro } from '../case-study/shared'
+import { BackLink, Contribute, HeroLine, NextProject, eyebrow, heading, useIntro } from '../case-study/shared'
 import { Condensation } from './Condensation'
 import { CycleRing } from './CycleRing'
 import { LedgerTape } from './LedgerTape'
@@ -139,6 +139,7 @@ export function ReductxnPage({ project }: { project: Project }) {
       <OutboxFlow project={project} />
       <Decisions project={project} />
       <Stack project={project} />
+      <Contribute project={project} />
       <NextProject current={project} />
     </article>
   )
