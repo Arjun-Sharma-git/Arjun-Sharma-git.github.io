@@ -24,5 +24,5 @@ export function IrisCanvas() {
     return () => removeEventListener('pointermove', onMove)
   }, [])
 
-  return <canvas ref={canvas} aria-hidden className="absolute inset-0 size-full" />
+  return <canvas ref={canvas} aria-hidden className="absolute inset-x-0 top-0 h-[50svh] w-full lg:inset-0 lg:h-full" />
 }

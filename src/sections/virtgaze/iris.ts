@@ -83,8 +83,8 @@ export function createEye() {
   return function draw({ ctx: c, w, h, t, dt, still }: Frame, state: EyeState) {
     const wide = w >= 1024
     const cx = wide ? w * 0.685 : w * 0.5
-    const cy = wide ? h * 0.47 : h * 0.235
-    const R = wide ? Math.min(h * 0.235, w * 0.125) : Math.min(w * 0.215, h * 0.11)
+    const cy = wide ? h * 0.47 : h * 0.56
+    const R = wide ? Math.min(h * 0.235, w * 0.125) : Math.min(w * 0.2, h * 0.2)
     const W = R * 2.3
     const H = R * 1.38
     if (!image || imageRadius !== R) {

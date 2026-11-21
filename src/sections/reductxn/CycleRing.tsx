@@ -32,8 +32,8 @@ export function CycleRing({ project }: { project: Project }) {
   const closed = step === stages.length - 1
 
   return (
-    <section aria-labelledby="approach" className="px-3 sm:px-4">
-      <div className="rounded-[28px] bg-ink px-5 py-20 text-paper sm:px-10 sm:py-28">
+    <section aria-labelledby="approach" className="sm:px-4">
+      <div className="bg-ink sm:rounded-[28px] px-5 py-20 text-paper sm:px-10 sm:py-28">
         <div className="mx-auto max-w-6xl">
           <div data-reveal className="max-w-2xl">
             <p className={`${eyebrow} text-gold`}>The approach</p>
@@ -43,7 +43,7 @@ export function CycleRing({ project }: { project: Project }) {
             <p className="mt-5 leading-relaxed text-paper/70">{approach.intro}</p>
           </div>
           <div className="mt-10 grid gap-8 lg:grid-cols-2 lg:gap-16">
-            <div className="sticky top-20 z-10 h-fit bg-ink pb-4 lg:top-28">
+            <div className="sticky top-0 z-10 -mx-5 h-fit bg-ink px-5 pb-4 pt-20 sm:-mx-10 sm:px-10 lg:top-28 lg:mx-0 lg:px-0 lg:pt-0">
               <svg ref={svg} viewBox="-50 0 500 400" aria-hidden className="mx-auto block max-h-[36svh] w-full lg:max-h-[calc(100svh-10rem)]">
                 <circle cx={200} cy={200} r={R} fill="none" stroke="rgb(251 248 242 / 0.12)" strokeWidth={2} />
                 <circle
@@ -87,7 +87,7 @@ export function CycleRing({ project }: { project: Project }) {
                 )}
               </svg>
             </div>
-            <ol ref={list} data-reveal className="space-y-[24svh] pb-[16svh] pt-2 lg:space-y-[30svh] lg:pb-[28svh] lg:pt-[10svh]">
+            <ol ref={list} data-reveal className="space-y-[14svh] pb-[16svh] pt-2 lg:space-y-[30svh] lg:pb-[28svh] lg:pt-[10svh]">
               {stages.map((s, i) => (
                 <li key={s.name} data-step className={stepClass}>
                   <p className="font-mono text-xs tracking-widest text-gold">{String(i + 1).padStart(2, '0')}</p>

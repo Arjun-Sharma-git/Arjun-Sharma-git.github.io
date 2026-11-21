@@ -11,7 +11,7 @@ import { IrisCanvas } from './IrisHero'
 function Hero({ project: p }: { project: Project }) {
   const c = p.caseStudy
   return (
-    <header className="relative flex min-h-svh flex-col justify-end overflow-hidden px-5 pb-10 pt-[46svh] sm:px-10 lg:justify-center lg:pt-28">
+    <header className="relative flex min-h-svh flex-col justify-end overflow-hidden px-5 pb-10 pt-[50svh] sm:px-10 lg:justify-center lg:pt-28">
       <IrisCanvas />
       <div className="pointer-events-none relative mx-auto w-full max-w-7xl">
         <div className="pointer-events-auto max-w-2xl lg:max-w-[46%]">
