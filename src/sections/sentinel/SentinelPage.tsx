@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import type { Project } from '~/content'
 import { Chip, ExternalLink } from '~/components/ui'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { BackLink, Contribute, HeroLine, NextProject, eyebrow, heading, useIntro } from '../case-study/shared'
 import { AccessPipeline } from './AccessPipeline'
 import { PersonaDemo } from './PersonaDemo'
@@ -16,7 +15,7 @@ function Hero({ project: p }: { project: Project }) {
           <div>
             <BackLink className="text-muted hover:text-ink" />
             <p data-hero-fade className={`${eyebrow} mt-7 text-gold-deep`}>
-              {p.name} · {p.kind}
+              {p.kind}
             </p>
             <h1 className="mt-4 font-serif text-[clamp(2.6rem,6.4vw,5.6rem)] leading-[0.98] tracking-tight">
               <span className="sr-only">{p.name}: </span>
@@ -124,7 +123,6 @@ function Stack({ project }: { project: Project }) {
 
 export function SentinelPage({ project }: { project: Project }) {
   const scope = useRef<HTMLElement>(null)
-  useScrollReveal(scope)
   useIntro(scope)
 
   return (

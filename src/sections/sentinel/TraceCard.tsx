@@ -35,7 +35,7 @@ export function TraceCard({ steps, active, autoplay = false }: { steps: string[]
 
   return (
     <div ref={ref} className="rounded-[24px] bg-ink p-5 text-paper shadow-[0_30px_80px_-40px_rgba(27,24,20,0.6)] sm:p-6" aria-hidden>
-      <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-gold">Live decision trace</p>
+      <p className="text-sm font-medium text-gold">Live decision trace</p>
       <p className="mt-1 font-serif text-2xl">
         How it <em className="text-gold">decided</em>
       </p>

@@ -5,7 +5,7 @@ export default {
   order: 3,
   slug: 'sentinel-vault',
   name: 'Sentinel Vault',
-  kind: 'AI · Permission-aware knowledge base',
+  kind: 'AI, permission-aware knowledge base',
   description:
     'Ask questions of a company’s documents and get cited answers, but only from the folders you may read. A local LLM on one consumer GPU, with permissions checked before the model reads anything, a prompt-injection gate, and a fact checker on every claim.',
   pipeline: ['Gate', 'Access', 'Search', 'Recheck', 'Answer', 'Verify', 'Audit'],
