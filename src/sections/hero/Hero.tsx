@@ -33,7 +33,7 @@ export function Hero() {
           </div>
 
           <div className="hero-content relative flex flex-col items-center">
-            <h1 className="relative font-serif text-[clamp(2.9rem,9vw,7.5rem)] leading-[0.95] tracking-tight">
+            <h1 className="relative font-serif text-[clamp(2.9rem,9vw,7.5rem)] leading-[1.05] sm:leading-[0.95] tracking-tight">
               <span className="sr-only">
                 {profile.name}, {profile.role}.{' '}
               </span>
@@ -48,7 +48,7 @@ export function Hero() {
               ))}
             </h1>
 
-            <p className="relative mt-8 max-w-xl text-balance rounded-2xl bg-cream/75 px-3 py-2 text-base leading-relaxed text-ink/80 backdrop-blur-sm sm:bg-transparent sm:px-0 sm:py-0 sm:text-lg sm:text-muted sm:backdrop-blur-none">
+            <p className="relative mt-8 max-w-xl text-balance rounded-2xl bg-cream/90 px-3 py-2 text-base leading-relaxed text-ink/80 sm:bg-transparent sm:px-0 sm:py-0 sm:text-lg sm:text-muted">
               I'm <strong className="font-semibold text-ink">{profile.name}</strong>, {profile.summary}
             </p>
 
@@ -59,7 +59,7 @@ export function Hero() {
               </a>
               <ExternalLink
                 href={profile.links.github}
-                className="rounded-full border border-line bg-paper/70 px-5 py-2 text-sm font-medium backdrop-blur transition-colors hover:border-ink"
+                className="rounded-full border border-line bg-paper/90 px-5 py-2 text-sm font-medium transition-colors sm:bg-paper/70 sm:backdrop-blur hover:border-ink"
               >
                 GitHub profile
               </ExternalLink>
@@ -67,7 +67,7 @@ export function Hero() {
                 <ExternalLink
                   href={profile.links.resume}
                   onClick={() => trackEvent('resume-download', 'Resume download')}
-                  className="rounded-full border border-line bg-paper/70 px-5 py-2 text-sm font-medium backdrop-blur transition-colors hover:border-ink"
+                  className="rounded-full border border-line bg-paper/90 px-5 py-2 text-sm font-medium transition-colors sm:bg-paper/70 sm:backdrop-blur hover:border-ink"
                 >
                   Download resume
                 </ExternalLink>

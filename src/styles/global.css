@@ -44,6 +44,14 @@ body {
   .js header nav,
   .js .hero-word > span {
     visibility: hidden;
+    /* Failsafe: if scripts never run (blocked, errored, slow on Safari), show everything after 2.5s.
+       GSAP's own inline opacity still keeps not-yet-revealed items hidden once it has started. */
+    animation: reveal-failsafe 0s 2.5s forwards;
+  }
+}
+@keyframes reveal-failsafe {
+  to {
+    visibility: visible;
   }
 }
 
@@ -179,4 +187,15 @@ body {
 }
 @media (prefers-reduced-motion: reduce) {
   .backdrop-glow { animation: none; }
+}
+/* Phones and tablets: a still backdrop with no blend layer keeps Safari's compositor free for the real animations. */
+@media (hover: none), (max-width: 767px) {
+  .backdrop-glow {
+    animation: none;
+    will-change: auto;
+  }
+  .backdrop-grain {
+    mix-blend-mode: normal;
+    opacity: 0.3;
+  }
 }

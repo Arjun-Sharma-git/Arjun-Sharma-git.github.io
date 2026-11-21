@@ -14,7 +14,13 @@ const seo = buildSeo(profile)
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
-    meta: [{ charSet: 'utf-8' }, { name: 'viewport', content: 'width=device-width, initial-scale=1' }, ...seo.meta],
+    meta: [
+      { charSet: 'utf-8' },
+      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      // Stop iOS Safari from wrapping numbers and dates in links, which makes React's hydration mismatch.
+      { name: 'format-detection', content: 'telephone=no, date=no, email=no, address=no' },
+      ...seo.meta,
+    ],
     links: [
       { rel: 'icon', href: '/favicon.svg', type: 'image/svg+xml' },
       { rel: 'apple-touch-icon', href: '/apple-touch-icon.png' },

@@ -133,7 +133,8 @@ function cycle(t: number): { w: [number, number, number]; scatter: number } {
  */
 export function createGazeScene(canvas: HTMLCanvasElement, { points }: Options): GazeScene {
   const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: false, powerPreference: 'high-performance' })
-  const pixelRatio = Math.min(devicePixelRatio, 2)
+  // Phones have 3x screens; 1.5x is plenty for soft points and keeps the GPU free for scrolling.
+  const pixelRatio = Math.min(devicePixelRatio, innerWidth < 768 ? 1.5 : 2)
   renderer.setPixelRatio(pixelRatio)
 
   const scene = new THREE.Scene()
