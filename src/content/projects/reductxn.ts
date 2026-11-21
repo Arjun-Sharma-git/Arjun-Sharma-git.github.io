@@ -4,7 +4,7 @@ export default {
   order: 2,
   slug: 'reductxn',
   name: 'Reductxn',
-  kind: 'Fintech · Shared expenses',
+  kind: 'Fintech, shared expenses',
   description:
     'Shared expenses on an exact, append-only ledger. Settle-up finds the provably fewest payments that clear a group, and estimates the transfer taxes and fees they avoid.',
   pipeline: ['Expenses', 'Ledger', 'Balances', 'Zero-sum groups', 'Fewest payments'],

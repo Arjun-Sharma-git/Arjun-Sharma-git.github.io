@@ -2,14 +2,12 @@ import { useRef, useState } from 'react'
 import { sectionIds } from '~/config/navigation'
 import { skillGroups } from '~/content'
 import { SectionHeading } from '~/components/ui'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { SkillPanel } from './SkillPanel'
 import { SkillTabs } from './SkillTabs'
 
 export function Skills() {
   const scope = useRef<HTMLElement>(null)
   const [active, setActive] = useState(0)
-  useScrollReveal(scope)
 
   return (
     <section ref={scope} id={sectionIds.skills} className="px-4 py-24 sm:py-32">

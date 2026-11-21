@@ -3,7 +3,6 @@ import { sectionIds } from '~/config/navigation'
 import { profile } from '~/content'
 import { ExternalLink } from '~/components/ui'
 import { Footer } from '~/components/layout'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
 import { ContactForm } from './ContactForm'
 import { trackEvent } from '~/lib/analytics'
@@ -11,7 +10,6 @@ import { trackEvent } from '~/lib/analytics'
 /** `onDark`: the page above is dark, so the rounded corners sit on that colour instead of cream. */
 export function Contact({ onDark = false }: { onDark?: boolean }) {
   const scope = useRef<HTMLElement>(null)
-  useScrollReveal(scope)
   useGSAP(
     () => {
       gsap.matchMedia().add(MOTION_OK, () => {
@@ -42,7 +40,7 @@ export function Contact({ onDark = false }: { onDark?: boolean }) {
               alt={`Portrait of ${profile.name}`}
               className="mb-8 size-32 rounded-full sm:size-36 object-cover ring-2 ring-gold/40 ring-offset-4 ring-offset-ink"
             />
-            <p data-reveal className="text-xs font-medium uppercase tracking-[0.2em] text-gold">
+            <p data-reveal className="text-sm font-medium text-gold">
               Contact
             </p>
             <h2 data-reveal className="mt-4 font-serif text-[clamp(2.2rem,5vw,4rem)] leading-[1] tracking-tight">

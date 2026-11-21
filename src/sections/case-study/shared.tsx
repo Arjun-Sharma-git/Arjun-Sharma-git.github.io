@@ -5,7 +5,7 @@ import { projects, type Project } from '~/content'
 import { ExternalLink } from '~/components/ui'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
 
-export const eyebrow = 'text-xs font-medium uppercase tracking-[0.2em]'
+export const eyebrow = 'text-sm font-medium'
 // The current step gets a gold rule rather than dimming the others, so every step keeps readable contrast.
 export const stepClass = 'border-l-2 border-transparent pl-5 transition-colors duration-300 data-[active=true]:border-gold'
 export const heading = 'font-serif text-[clamp(2.4rem,6vw,4.5rem)] leading-[1] tracking-tight'

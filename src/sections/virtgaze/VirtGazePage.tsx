@@ -1,7 +1,6 @@
 import { useRef } from 'react'
 import type { Project } from '~/content'
 import { Chip, ExternalLink } from '~/components/ui'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
 import { BackLink, Contribute, HeroLine, NextProject, eyebrow, heading, useIntro } from '../case-study/shared'
 import { FilterDemo } from './FilterDemo'
@@ -17,7 +16,7 @@ function Hero({ project: p }: { project: Project }) {
         <div className="pointer-events-auto max-w-2xl lg:max-w-[46%]">
           <BackLink className="text-paper/60 hover:text-paper" />
           <p data-hero-fade className={`${eyebrow} mt-6 text-gold`}>
-            {p.name} · {p.kind}
+            {p.kind}
           </p>
           <h1 className="mt-4 font-serif text-[clamp(2.7rem,6.6vw,6rem)] leading-[0.98] tracking-tight">
             <span className="sr-only">{p.name}: </span>
@@ -138,7 +137,6 @@ function Stack({ project }: { project: Project }) {
 
 export function VirtGazePage({ project }: { project: Project }) {
   const scope = useRef<HTMLElement>(null)
-  useScrollReveal(scope)
   useIntro(scope)
 
   return (

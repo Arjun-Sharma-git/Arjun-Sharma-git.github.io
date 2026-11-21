@@ -33,7 +33,7 @@ function Rows({ hidden = false }: { hidden?: boolean }) {
 export function LedgerTape() {
   return (
     <div aria-hidden data-hero-fade className="rounded-[20px] border border-line bg-paper shadow-[0_24px_60px_rgb(27_24_20/0.1)]">
-      <div className="flex items-center justify-between border-b border-line px-4 py-3 font-mono text-[0.68rem] uppercase tracking-widest text-muted">
+      <div className="flex items-center justify-between border-b border-line px-4 py-3 font-mono text-xs text-muted">
         <span>ledger.lines</span>
         <span className="flex items-center gap-1.5">
           <span className="size-1.5 rounded-full bg-gold" />

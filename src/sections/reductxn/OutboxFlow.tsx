@@ -25,7 +25,7 @@ export function OutboxFlow({ project }: { project: Project }) {
       <div data-reveal className="mt-12 grid gap-0 md:grid-cols-[1fr_3rem_1fr_3rem_1fr_3rem_1fr]">
         {flow.nodes.flatMap((n, i) => [
           <div key={n.name} className="rounded-3xl border border-line bg-paper p-5">
-            <p className="font-mono text-[0.68rem] uppercase tracking-widest text-gold-deep">{n.tag}</p>
+            <p className="text-xs font-medium text-gold-deep">{n.tag}</p>
             <h3 className="mt-2 font-serif text-2xl leading-tight">{n.name}</h3>
             <p className="mt-2 text-sm leading-relaxed text-muted">{n.detail}</p>
           </div>,

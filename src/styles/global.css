@@ -38,7 +38,6 @@ body {
 
 /* Pre-hide only when JS is on and motion is allowed; GSAP reveals them. */
 @media (prefers-reduced-motion: no-preference) {
-  .js [data-reveal],
   .js [data-hero-fade],
   .js .eye,
   .js header nav,

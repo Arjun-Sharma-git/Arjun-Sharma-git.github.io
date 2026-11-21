@@ -4,13 +4,11 @@ import { sectionIds } from '~/config/navigation'
 import { profile } from '~/content'
 import { showcaseReposQuery } from '~/queries/repos'
 import { ExternalLink, SectionHeading } from '~/components/ui'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { RepoCard } from './RepoCard'
 
 export function Repos() {
   const scope = useRef<HTMLElement>(null)
   const { data: repos } = useSuspenseQuery(showcaseReposQuery)
-  useScrollReveal(scope)
 
   return (
     <section ref={scope} id={sectionIds.repos} className="px-4 pt-24 pb-10 sm:py-32">

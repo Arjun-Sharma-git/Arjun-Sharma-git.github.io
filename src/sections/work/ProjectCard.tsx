@@ -12,7 +12,7 @@ export function ProjectCard({ project: p }: { project: Project }) {
     <article data-reveal className={`flex h-full flex-col rounded-[28px] border border-line p-7 sm:p-9 ${dark ? 'bg-ink text-paper' : 'bg-paper'}`}>
       <div className="flex items-start justify-between gap-4">
         <div>
-          <p className={`text-xs font-medium uppercase tracking-[0.18em] ${dark ? 'text-gold' : 'text-gold-deep'}`}>{p.kind}</p>
+          <p className={`text-sm font-medium ${dark ? 'text-gold' : 'text-gold-deep'}`}>{p.kind}</p>
           <h3 className="mt-3 font-serif text-4xl sm:text-5xl">
             <Link to={`/work/${p.slug}`} className="hover:text-gold">
               {p.name}

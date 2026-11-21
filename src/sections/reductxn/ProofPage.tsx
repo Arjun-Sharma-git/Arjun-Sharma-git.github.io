@@ -1,7 +1,6 @@
 import { type ReactNode, useRef } from 'react'
 import { Link } from '@tanstack/react-router'
 import type { Project } from '~/content'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import source from '../../../proofs/settle-up/SettleUp/Basic.lean?raw'
 import { HeroLine, eyebrow, heading, useIntro } from '../case-study/shared'
 
@@ -29,7 +28,6 @@ function highlight(code: string) {
 export function ProofPage({ project }: { project: Project }) {
   const proof = project.caseStudy.proof!
   const scope = useRef<HTMLElement>(null)
-  useScrollReveal(scope)
   useIntro(scope)
 
   return (

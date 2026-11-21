@@ -2,7 +2,6 @@ import { useRef } from 'react'
 import { sectionIds } from '~/config/navigation'
 import { experience } from '~/content'
 import { SectionHeading } from '~/components/ui'
-import { useScrollReveal } from '~/hooks/useScrollReveal'
 import { MOTION_OK, gsap, useGSAP } from '~/lib/gsap'
 import { duration, formatMonth } from './dates'
 
@@ -12,7 +11,6 @@ const roles = experience.flatMap((job) => job.roles.map((role) => ({ job, role, 
 
 export function Experience() {
   const scope = useRef<HTMLElement>(null)
-  useScrollReveal(scope)
 
   useGSAP(
     () => {
@@ -43,13 +41,13 @@ export function Experience() {
               aria-hidden="true"
               className={`absolute top-1.5 left-0 size-[15px] rounded-full border-2 border-paper ${role.end ? 'bg-gold' : 'bg-ink ring-4 ring-gold/30'}`}
             />
-            <p className="font-mono text-xs tracking-widest text-gold-deep uppercase">
+            <p className="text-sm font-medium text-gold-deep">
               <time dateTime={role.start}>{formatMonth(role.start)}</time> –{' '}
-              {role.end ? <time dateTime={role.end}>{formatMonth(role.end)}</time> : 'Present'} · {duration(role.start, end)}
+              {role.end ? <time dateTime={role.end}>{formatMonth(role.end)}</time> : 'Present'} ({duration(role.start, end)})
             </p>
             <h3 className="mt-2 font-serif text-3xl leading-tight sm:text-4xl">{role.title}</h3>
             <p className="mt-1 text-sm text-muted">
-              {job.company} · {role.type} · {job.location} · {role.mode}
+              {[job.company, role.type, job.location, role.mode].filter(Boolean).join(', ')}
             </p>
             {role.summary && <p className="mt-4 leading-relaxed text-muted">{role.summary}</p>}
             {role.highlights.map((h) => (
