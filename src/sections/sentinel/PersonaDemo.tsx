@@ -95,16 +95,16 @@ export function PersonaDemo({ project }: { project: Project }) {
 
         <p className="mt-6 inline-block rounded-2xl rounded-br-md bg-ink px-4 py-2.5 text-paper">{QUESTION}</p>
 
-        <div ref={panel} className="mt-6 grid gap-6 lg:grid-cols-[1fr_1.2fr]" aria-live="polite">
+        <div ref={panel} className="mt-6 grid grid-cols-[minmax(0,1fr)] gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]" aria-live="polite">
           <div data-swap>
             <p className={`${eyebrow} text-muted`}>Folders {person.name} can read</p>
-            <ul className="mt-3 grid grid-cols-2 gap-2 text-sm">
+            <ul className="mt-3 grid grid-cols-[repeat(2,minmax(0,1fr))] gap-2 text-sm">
               {FOLDERS.map((f) => {
                 const open = person.reads.includes(f)
                 return (
                   <li
                     key={f}
-                    className={`flex items-center gap-2 rounded-xl border px-3 py-2 font-mono text-[12px] ${
+                    className={`flex min-w-0 items-center gap-2 rounded-xl border px-3 py-2 font-mono text-[12px] ${
                       open ? 'border-gold/50 bg-cream text-ink' : 'border-line text-muted/60 line-through decoration-muted/30'
                     }`}
                   >
@@ -126,8 +126,8 @@ export function PersonaDemo({ project }: { project: Project }) {
               <ol className="mt-3 space-y-1.5 font-mono text-[12px]">
                 {person.top.map((t) => (
                   <li key={t.doc} className="flex justify-between gap-4 border-b border-line pb-1.5">
-                    <span className="truncate">{t.doc}</span>
-                    <span className={Number(t.score) > 0.5 ? 'text-gold-deep' : 'text-muted'}>{t.score}</span>
+                    <span className="min-w-0 truncate" title={t.doc}>{t.doc}</span>
+                    <span className={`shrink-0 ${Number(t.score) > 0.5 ? 'text-gold-deep' : 'text-muted'}`}>{t.score}</span>
                   </li>
                 ))}
               </ol>
@@ -140,7 +140,7 @@ export function PersonaDemo({ project }: { project: Project }) {
                 <>
                   {person.answer}
                   <sup className="ml-1 rounded-full bg-gold/20 px-1.5 font-mono text-[10px] text-gold-deep">1</sup>
-                  <p className="mt-2 font-mono text-[11px] text-muted">1 · financials/q3-2026-results.md · claim checked</p>
+                  <p className="mt-2 break-all font-mono text-[11px] text-muted">1. financials/q3-2026-results.md, claim checked</p>
                 </>
               ) : (
                 <>

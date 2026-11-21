@@ -18,6 +18,11 @@
 html {
   scroll-padding-top: 6rem;
 }
+/* Safety net: no stray wide element may make the page scroll sideways on phones. clip (not hidden) keeps sticky working. */
+html,
+body {
+  overflow-x: clip;
+}
 body {
   background: var(--color-cream);
   color: var(--color-ink);

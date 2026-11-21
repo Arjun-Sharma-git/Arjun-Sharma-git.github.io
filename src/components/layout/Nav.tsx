@@ -15,11 +15,11 @@ export function Nav() {
   })
 
   return (
-    <header className="fixed inset-x-0 top-4 z-40 flex justify-center px-4">
+    <header className="fixed inset-x-0 top-4 z-40 flex justify-center px-4 before:pointer-events-none before:absolute before:inset-x-0 before:-top-4 before:-bottom-6 before:-z-10 before:backdrop-blur-md before:[mask-image:linear-gradient(to_bottom,#000_60%,transparent)] md:before:hidden">
       <nav
         ref={ref}
         aria-label="Primary"
-        className="relative flex items-center gap-1 rounded-full border border-line/80 bg-paper/80 p-1.5 text-sm shadow-[0_8px_30px_rgb(27_24_20/0.08)] backdrop-blur-md"
+        className="relative flex items-center gap-1 rounded-full border border-line/80 bg-paper/95 p-1.5 text-sm shadow-[0_8px_30px_rgb(27_24_20/0.08)] backdrop-blur-md"
       >
         <a href={`/#${sectionIds.top}`} className="flex items-center gap-2 rounded-full px-3 py-1.5 font-medium">
           <span aria-hidden className="grid size-6 place-items-center rounded-full bg-ink font-serif text-sm text-paper">
