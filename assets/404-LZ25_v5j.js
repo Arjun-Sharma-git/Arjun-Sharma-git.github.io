@@ -1,0 +1,1 @@
+import{i as e}from"./layout-D4Q_kLaw.js";var t=e;export{t as component};
