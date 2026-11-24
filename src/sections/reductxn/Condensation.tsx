@@ -135,7 +135,7 @@ export function Condensation({ project }: { project: Project }) {
       <div className="mt-12 grid gap-8 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
         <div className="sticky top-0 z-10 -mx-4 h-fit bg-[linear-gradient(to_bottom,var(--color-cream)_calc(100%-1rem),transparent)] px-4 pb-4 pt-20 lg:top-24 lg:mx-0 lg:bg-transparent lg:p-0">
         <div className="rounded-[28px] border border-line bg-paper p-3 shadow-[0_24px_60px_rgb(27_24_20/0.08)] lg:p-5">
-          <div className="mx-auto max-h-[43svh] max-w-[43svh] lg:max-h-[calc(100svh-15rem)] lg:max-w-[calc(100svh-15rem)]">
+          <div className="mx-auto max-h-[38svh] max-w-[38svh] lg:max-h-[calc(100svh-15rem)] lg:max-w-[calc(100svh-15rem)]">
             <svg ref={svg} viewBox={`0 0 ${SIZE} ${SIZE}`} aria-hidden className="size-full overflow-visible">
               <defs>
                 <marker id="pay" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
@@ -197,7 +197,7 @@ export function Condensation({ project }: { project: Project }) {
         </div>
         </div>
 
-        <ol ref={list} data-reveal className="space-y-[20svh] pb-[20svh] pt-4 lg:space-y-[42svh] lg:pb-[36svh] lg:pt-[12svh]">
+        <ol ref={list} data-reveal className="space-y-[20svh] pb-[30svh] pt-4 lg:space-y-[42svh] lg:pb-[36svh] lg:pt-[12svh]">
           {(demo.steps ?? []).map((s, i) => (
             <li key={s.name} data-step className={stepClass}>
               <p className="font-mono text-xs tracking-widest text-gold-deep">{String(i + 1).padStart(2, '0')}</p>

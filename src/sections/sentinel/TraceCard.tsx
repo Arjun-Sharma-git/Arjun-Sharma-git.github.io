@@ -39,7 +39,7 @@ export function TraceCard({ steps, active, autoplay = false }: { steps: string[]
       <p className="mt-1 font-serif text-2xl">
         How it <em className="text-gold">decided</em>
       </p>
-      <ol className="mt-4 space-y-2.5">
+      <ol className="mt-3 space-y-1.5 sm:mt-4 sm:space-y-2.5">
         {steps.map((name, i) => {
           const state = active === undefined ? 'done' : i < active ? 'done' : i === active ? 'now' : 'next'
           return (

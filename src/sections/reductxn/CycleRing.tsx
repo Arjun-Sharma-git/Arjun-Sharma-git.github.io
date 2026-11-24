@@ -87,7 +87,7 @@ export function CycleRing({ project }: { project: Project }) {
                 )}
               </svg>
             </div>
-            <ol ref={list} data-reveal className="space-y-[14svh] pb-[16svh] pt-2 lg:space-y-[30svh] lg:pb-[28svh] lg:pt-[10svh]">
+            <ol ref={list} data-reveal className="space-y-[14svh] pb-[30svh] pt-2 lg:space-y-[30svh] lg:pb-[28svh] lg:pt-[10svh]">
               {stages.map((s, i) => (
                 <li key={s.name} data-step className={stepClass}>
                   <p className="font-mono text-xs tracking-widest text-gold">{String(i + 1).padStart(2, '0')}</p>

@@ -25,7 +25,7 @@ export function AccessPipeline({ project }: { project: Project }) {
         <div className="sticky top-0 z-10 -mx-4 self-start bg-[linear-gradient(to_bottom,var(--color-cream)_calc(100%-1rem),transparent)] px-4 pb-4 pt-20 lg:top-28 lg:mx-0 lg:bg-none lg:p-0">
           <TraceCard steps={names} active={active} />
         </div>
-        <ol ref={list} className="space-y-[20svh] pb-[24svh] pt-6 lg:space-y-[34svh] lg:pb-[30svh] lg:pt-[8svh]">
+        <ol ref={list} className="space-y-[20svh] pb-[30svh] pt-6 lg:space-y-[34svh] lg:pb-[30svh] lg:pt-[8svh]">
           {approach.stages.map((s, i) => (
             <li key={s.name} data-step className={stepClass}>
               <p className="font-mono text-xs tracking-widest text-gold-deep">

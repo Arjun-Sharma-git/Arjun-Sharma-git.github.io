@@ -59,6 +59,19 @@ body {
   }
 }
 
+/* Phones: case-study steps click into place one at a time, each landing just below the pinned graphic
+   (--snap-offset is its measured height, set by useScrollSteps). Proximity, so the rest of the page scrolls freely. */
+@media (max-width: 1023px) {
+  html {
+    scroll-snap-type: y proximity;
+  }
+  [data-step] {
+    scroll-snap-align: start;
+    /* html's 6rem scroll-padding already counts toward the offset. */
+    scroll-margin-top: calc(var(--snap-offset, 6rem) - 6rem);
+  }
+}
+
 /* Ruled ledger paper with a margin line, for the Reductxn page. */
 .ledger-paper {
   background-image:

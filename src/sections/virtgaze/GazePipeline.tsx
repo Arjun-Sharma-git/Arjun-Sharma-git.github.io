@@ -36,7 +36,7 @@ export function GazePipeline({ project }: { project: Project }) {
             <canvas ref={canvas} aria-hidden className="size-full rounded-[28px]" />
           </div>
         </div>
-        <ol ref={list} data-reveal className="space-y-[22svh] pb-[22svh] pt-6 lg:space-y-[38svh] lg:pb-[34svh] lg:pt-[12svh]">
+        <ol ref={list} data-reveal className="space-y-[22svh] pb-[30svh] pt-6 lg:space-y-[38svh] lg:pb-[34svh] lg:pt-[12svh]">
           {approach.stages.map((s, i) => (
             <li key={s.name} data-step className={stepClass}>
               <p className="font-mono text-xs tracking-widest text-gold">
