@@ -31,7 +31,7 @@ export function GazePipeline({ project }: { project: Project }) {
         <p className="mt-5 max-w-xl leading-relaxed text-paper/70">{approach.intro}</p>
       </div>
       <div className="mt-12 grid gap-10 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
-        <div className="sticky top-0 z-10 -mx-4 bg-[#100e0b] px-4 pb-4 pt-20 lg:top-24 lg:mx-0 lg:bg-transparent lg:p-0">
+        <div className="sticky top-0 z-10 -mx-4 self-start bg-[#100e0b] px-4 pb-4 pt-20 lg:top-24 lg:mx-0 lg:bg-transparent lg:p-0">
           <div className="h-[38svh] rounded-[28px] border border-paper/10 bg-[#171410] lg:h-[calc(100svh-8rem)]">
             <canvas ref={canvas} aria-hidden className="size-full rounded-[28px]" />
           </div>
