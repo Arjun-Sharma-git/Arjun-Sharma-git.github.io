@@ -1,4 +1,4 @@
-import{r as e}from"./rolldown-runtime-XKyaHtl9.js";import{E as t,J as n,a as r,b as i,s as a}from"./layout-D4Q_kLaw.js";import{t as o}from"./index-BqjY-J49.js";import{t as s}from"./Contact-Dr2czwcN.js";import{a as c,c as l,o as u,r as d}from"./shared-BL5CakYK.js";var f=e(n(),1),p=`/-
+import{r as e}from"./rolldown-runtime-XKyaHtl9.js";import{E as t,J as n,a as r,b as i,s as a}from"./layout-D4Q_kLaw.js";import{t as o}from"./index-DKtplP1-.js";import{t as s}from"./Contact-Dr2czwcN.js";import{a as c,c as l,o as u,r as d}from"./shared-BL5CakYK.js";var f=e(n(),1),p=`/-
 Fewest payments to settle a group.
 
 For integer balances \`b\` summing to zero, let \`n\` be the number of people with a non-zero balance and
