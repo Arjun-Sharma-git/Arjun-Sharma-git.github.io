@@ -64,8 +64,19 @@ export function useScrollSteps(list: RefObject<HTMLElement | null>, { onProgress
           onUpdate: (self) => update(phone ? fromLayout() : self.progress),
           onRefresh: (self) => update(phone ? fromLayout() : self.progress),
         })
+        // Phone: only snap while the steps are in play, never elsewhere on the page.
+        const snap = phone
+          ? ScrollTrigger.create({
+              trigger: list.current,
+              start: 'top 75%',
+              end: 'bottom 25%',
+              toggleClass: { targets: document.documentElement, className: 'snap-steps' },
+            })
+          : null
         return () => {
           trigger.kill()
+          snap?.kill()
+          document.documentElement.classList.remove('snap-steps')
           steps.forEach((el) => delete el.dataset.active)
         }
       })

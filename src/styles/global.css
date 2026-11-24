@@ -60,9 +60,10 @@ body {
 }
 
 /* Phones: case-study steps click into place one at a time, each landing just below the pinned graphic
-   (--snap-offset is its measured height, set by useScrollSteps). Proximity, so the rest of the page scrolls freely. */
+   (--snap-offset is its measured height, set by useScrollSteps). Snapping is only switched on (html.snap-steps)
+   while a step list is on screen, so the rest of the page scrolls freely. */
 @media (max-width: 1023px) {
-  html {
+  html.snap-steps {
     scroll-snap-type: y proximity;
   }
   [data-step] {
